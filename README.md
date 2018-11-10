@@ -2447,3 +2447,4 @@ install this
 
 - npm install --save node-sass-chokidar@1.2.2 npm-run-all@4.1.2
 - npm i --save react-router-dom@4.2.2
+- npm install --save react-redux@5.0.7 redux@3.7.2 redux-thunk@2.2.0
