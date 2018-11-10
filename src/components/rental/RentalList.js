@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import RentalCard from './RentalCard';
+import Data from './RentalDataStore';
 
 export default class RentalList extends Component {
 
@@ -7,14 +8,19 @@ export default class RentalList extends Component {
         super();
 
         this.state = {
-            rentals: [1,2,3,4]
+            rentals: Data['Rentals']
         }
     }
 
 
     renderRentals() {
         return this.state.rentals.map((rental, index) => {
-            return <RentalCard key={index} />
+            return(
+                <RentalCard 
+                    key={index}
+                    rental={rental}
+                />
+            ) 
         })
     }
 
