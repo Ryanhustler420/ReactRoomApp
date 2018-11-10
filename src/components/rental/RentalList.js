@@ -13,8 +13,8 @@ export default class RentalList extends Component {
 
 
     renderRentals() {
-        return this.state.rentals.map((rental) => {
-            return <RentalCard />
+        return this.state.rentals.map((rental, index) => {
+            return <RentalCard key={index} />
         })
     }
 

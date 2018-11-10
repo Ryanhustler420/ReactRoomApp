@@ -2446,3 +2446,4 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 install this 
 
 - npm install --save node-sass-chokidar@1.2.2 npm-run-all@4.1.2
+- npm i --save react-router-dom@4.2.2
