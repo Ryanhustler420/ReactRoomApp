@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import './App.css';
 
@@ -14,8 +14,9 @@ class App extends Component {
           <div>
             <Header />
             <div className="container">
-              <Route exact path="/rentals" component={RentalList}/>
-              <Route exact path="/rentals/:id" component={RentalDetail}/>
+            <Route exact path='/' render={() => <Redirect to='/rentals'/>}/>
+              <Route exact path='/rentals' component={RentalList}/>
+              <Route exact path='/rentals/:id' component={RentalDetail}/>
             </div>
           </div>
         </BrowserRouter>
