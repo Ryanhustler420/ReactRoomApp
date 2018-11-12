@@ -1,28 +1,66 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
+.navbar {
   padding: 20px;
-  color: white;
-}
+  margin-bottom: 40px;
+  background-color: #20232a; }
+  .navbar .bwm-search {
+    height: 50px;
+    width: 300px !important; }
+  .navbar .navbar-brand {
+    margin-right: 30px;
+    font-size: 27px;
+    letter-spacing: 1px;
+    color: #61dafb !important;
+    font-weight: 500; }
+  .navbar .nav-item {
+    font-size: 14px; }
+  .navbar .btn-bwm-search {
+    border-color: #61dafb;
+    color: #61dafb; }
+    .navbar .btn-bwm-search:hover, .navbar .btn-bwm-search:focus, .navbar .btn-bwm-search:active {
+      background-color: transparent !important;
+      border-color: #61dafb !important;
+      color: #61dafb !important;
+      box-shadow: none; }
+  .navbar .nav-item {
+    color: #ededed; }
 
-.App-title {
-  font-size: 1.5em;
-}
+#rentalListing {
+  /* SINGLE CARD STYLES */ }
+  #rentalListing .title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 20px; }
+  #rentalListing .rental-detail-link:hover, #rentalListing .rental-detail-link:active {
+    text-decoration: none; }
+  #rentalListing .bwm-card {
+    border: none; }
+    #rentalListing .bwm-card .card-block {
+      padding-top: 8px; }
+      #rentalListing .bwm-card .card-block .card-subtitle {
+        margin: 0;
+        font-weight: 500;
+        font-size: 12px;
+        text-transform: uppercase; }
+      #rentalListing .bwm-card .card-block .card-title {
+        font-size: 19px;
+        margin: 3px 0;
+        color: #454545; }
+      #rentalListing .bwm-card .card-block .card-text {
+        font-size: 14px;
+        font-weight: 300;
+        color: #7e7e7e;
+        margin-bottom: 0; }
 
-.App-intro {
-  font-size: large;
-}
+.page-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 20px; }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+.apartment {
+  color: #a72da3; }
+
+.house {
+  color: #bf1818; }
+
+.condo {
+  color: #d68000; }
