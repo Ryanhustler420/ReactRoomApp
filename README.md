@@ -2460,3 +2460,4 @@ module.exports = {
 ```
 - npm install --save axios
 - npm i --save font-awesome
+- npm i titlelize --save
