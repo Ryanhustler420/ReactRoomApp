@@ -1,9 +1,13 @@
-import Data from '../components/rental/RentalDataStore';
+import { FETCH_RENTALS } from './../actions/types';
 
-const rentals = Data['Rentals'];
+const INITIAL_STATE = {
+    data: []
+}
 
-export const rentalReducer = (state = rentals, action) => {
+export const rentalReducer = (state = INITIAL_STATE, action) => {
     switch(action.type){
+        case FETCH_RENTALS:
+            return {...state, data: action.rentals}
         default:
             return state;
     }
