@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",
+    "express": "^4.16.4",
     "jquery": "^3.3.1",
     "node-sass-chokidar": "^1.2.2",
     "npm-run-all": "^4.1.2",
