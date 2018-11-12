@@ -14,7 +14,9 @@ class RentalDetail extends Component {
 
     render() {
         const rental = this.props.rental;
-        if(rental.id){
+        console.log(rental);
+
+        if(rental.id && rental.data._id){
             return (
                 <div>
                     <h1>{rental.title}</h1>

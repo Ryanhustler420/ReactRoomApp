@@ -15,7 +15,12 @@ class RentalListing extends Component {
             <div>
                 <section id="rentalListing">
                     <h1 className="page-title"> Your Home All Around the World</h1>
-                    <RentalList rentals={this.props.rentals}/>
+                    {
+                        this.props.rentals ? 
+                            <RentalList rentals={this.props.rentals}/> 
+                        : 
+                            "Loading.."
+                    }
                 </section>
             </div>
         )

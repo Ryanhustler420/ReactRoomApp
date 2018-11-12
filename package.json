@@ -2,6 +2,11 @@
   "name": "react-starter-bwm",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "api/v1/*": {
+      "target" : "http://localhost:3001"
+    }
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
