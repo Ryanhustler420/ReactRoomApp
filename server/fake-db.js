@@ -10,6 +10,7 @@ class FakeDb {
                 category: "condo",
                 image: "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg",
                 bedrooms: 4,
+                shared:true,
                 description: "Very nice apartment in center of the city.",
                 dailyRate: 43
             },
@@ -20,6 +21,7 @@ class FakeDb {
                 category: "apartment",
                 image: "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg",
                 bedrooms: 1,
+                shared:false,
                 description: "Very nice apartment in center of the city.",
                 dailyRate: 43
             },
@@ -30,6 +32,7 @@ class FakeDb {
                 category: "house",
                 image: "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg",
                 bedrooms: 5,
+                shared:true,
                 description: "Very nice apartment in center of the city.",
                 dailyRate: 23
             }
