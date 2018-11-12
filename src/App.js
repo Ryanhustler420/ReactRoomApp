@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import './App.css';
 
 import  Header  from './shared/Header';
-import RentalList from './components/rental/RentalList';
-import RentalDetail from './components/rental/RentalDetail';
+import RentalList from './components/rental/rentalListing/RentalList';
+import RentalDetail from './components/rental/rentalDetail/RentalDetail';
 
 const store = require('./reducers').init();
 
