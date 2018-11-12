@@ -2461,3 +2461,4 @@ module.exports = {
 - npm install --save axios
 - npm i --save font-awesome
 - npm i titlelize --save
+- npm install --save react-google-maps@9.4.5
