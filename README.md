@@ -2459,3 +2459,4 @@ module.exports = {
 
 ```
 - npm install --save axios
+- npm i --save font-awesome
