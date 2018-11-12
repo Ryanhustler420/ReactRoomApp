@@ -2449,3 +2449,12 @@ install this
 - npm i --save react-router-dom@4.2.2
 - npm install --save react-redux@5.0.7 redux@3.7.2 redux-thunk@2.2.0
 - npm install express --save
+
+> inside config/dev.js
+
+```
+module.exports = {
+    DB_URI: 'mongodb://<username>:<password>@ds259444.mlab.com:59444/condo_room'
+} 
+
+```
