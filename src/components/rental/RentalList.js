@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import RentalCard from './RentalCard';
-import Data from './RentalDataStore';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions';

@@ -30,6 +30,8 @@
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 20px; }
+  #rentalListing .rental-detail-link:hover, #rentalListing .rental-detail-link:active {
+    text-decoration: none; }
   #rentalListing .bwm-card {
     border: none; }
     #rentalListing .bwm-card .card-block {
@@ -38,11 +40,11 @@
         margin: 0;
         font-weight: 500;
         font-size: 12px;
-        text-transform: uppercase;
-        color: #16861a; }
+        text-transform: uppercase; }
       #rentalListing .bwm-card .card-block .card-title {
         font-size: 19px;
-        margin: 3px 0; }
+        margin: 3px 0;
+        color: #454545; }
       #rentalListing .bwm-card .card-block .card-text {
         font-size: 14px;
         font-weight: 300;
@@ -53,3 +55,12 @@
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 20px; }
+
+.apartment {
+  color: #a72da3; }
+
+.house {
+  color: #bf1818; }
+
+.condo {
+  color: #d68000; }
