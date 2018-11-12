@@ -9,9 +9,9 @@ import {
 // ACTION CREATORS
 export const fetchRentals = () => {
     return dispatch => {
-        axios.get(`/api/v1/rentals`).then((rentals) => {
-            dispatch(fetchRentalsSuccess(rentals.data));
-        });
+        axios.get(`/api/v1/rentals`)
+        .then(response => response.data)
+        .then(rentals =>  dispatch(fetchRentalsSuccess(rentals)));
     }
 }
 
@@ -39,8 +39,7 @@ export const fetchRentalById = (rentalId) => {
     return function(dispatch){
         dispatch(fetchRentalByIdInit());
 
-        axios.get(`/api/v1/rentals/${rentalId}`).then((rental) => {
-            dispatch(fetchRentalByIdSuccess(rental));
-        })
+        axios.get(`/api/v1/rentals/${rentalId}`).then(response => response.data)
+        .then(rental => dispatch(fetchRentalByIdSuccess(rental)))
     }
 }
