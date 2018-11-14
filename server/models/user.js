@@ -45,4 +45,10 @@ userSchema.pre('save', function(next){
     });
 });
 
+// this method is used for login time password matching with the database
+userSchema.methods.isSamePassword = function(requestPassword){
+    const user = this;
+    return bcrypt.compareSync(requestPassword, user.password);
+}
+
 module.exports = mongoose.model('User',userSchema); 
