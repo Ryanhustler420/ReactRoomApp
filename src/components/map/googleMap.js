@@ -1,4 +1,5 @@
 import React from 'react';
+import { Cacher } from './../../services/cacher';
 
 import {
     withScriptjs,
@@ -11,7 +12,6 @@ import {
 function MapComponent(props) {
 
     const { coordinates } = props;
-    console.log(coordinates);
 
     return (
         <GoogleMap
@@ -31,6 +31,7 @@ function withGeocode(WrappedComponent){
 
         constructor() {
             super();
+            this.cacher = new Cacher();
             this.state = {
                 coordinates : {
                     lat: 0,
@@ -47,16 +48,25 @@ function withGeocode(WrappedComponent){
             const location = this.props.location;
             const geocoder = new window.google.maps.Geocoder();
 
-            geocoder.geocode({address: location}, (result, status) => {
-                if(status === 'OK'){
-                    const geometry = result[0].geometry.location;
-                    const coordinates = { lat: geometry.lat() , lng: geometry.lng()};
+            // if location is cache return cache value
+            if(this.cacher.isValueCache(location)){
+                
+            }else{
+                // geocode location return             
+                geocoder.geocode({address: location}, (result, status) => {
+                    if(status === 'OK'){
+                        const geometry = result[0].geometry.location;
+                        const coordinates = { lat: geometry.lat() , lng: geometry.lng()};
 
-                    this.setState({
-                        coordinates
-                    })
-                }
-            })
+                        this.cacher.cacheValue(location,coordinates);
+
+                        this.setState({
+                            coordinates
+                        })
+                    }
+                })
+            }
+
         }
 
         render() {

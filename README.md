@@ -2462,3 +2462,4 @@ module.exports = {
 - npm i --save font-awesome
 - npm i titlelize --save
 - npm install --save react-google-maps@9.4.5
+- npm install --save camel-case
