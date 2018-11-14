@@ -41,32 +41,42 @@ function withGeocode(WrappedComponent){
         }
 
         componentWillMount() {
-            this.geocodeLocation();
+            this.getGeocodeLocation();
         }
 
-        geocodeLocation() {
-            const location = this.props.location;
+        geoodeLocation(location) {
             const geocoder = new window.google.maps.Geocoder();
 
-            // if location is cache return cache value
-            if(this.cacher.isValueCache(location)){
-                
-            }else{
-                // geocode location return             
+            return new Promise((resolve, reject) => {
                 geocoder.geocode({address: location}, (result, status) => {
                     if(status === 'OK'){
                         const geometry = result[0].geometry.location;
                         const coordinates = { lat: geometry.lat() , lng: geometry.lng()};
-
+    
                         this.cacher.cacheValue(location,coordinates);
-
-                        this.setState({
-                            coordinates
-                        })
+                        resolve(coordinates);
+                    }else{
+                        reject('ERROR!!! in geolocation Method');
                     }
                 })
-            }
+            });
+        }
 
+        getGeocodeLocation() {
+            const location = this.props.location;
+            
+            if(this.cacher.isValueCache(location)){
+                this.setState({coordinates: this.cacher.getCacheValue(location)});
+            }else{  
+                this.geoodeLocation(location)
+                .then((coordinates) => {
+                    this.setState({
+                        coordinates
+                    });
+                },(error) => {
+                    console.log(error);
+                });
+            }
         }
 
         render() {
