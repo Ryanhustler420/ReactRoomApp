@@ -1,12 +1,23 @@
-import Data from '../components/rental/RentalDataStore';
-import { FETCH_RENTALS, FETCH_RENTAL_BY_ID_SUCCESS, FETCH_RENTAL_BY_ID_INIT } from './types';
+import axios from 'axios';
 
-const rentals = Data['Rentals'];
+import { 
+    FETCH_RENTAL_BY_ID_SUCCESS, 
+    FETCH_RENTAL_BY_ID_INIT,
+    FETCH_RENTAL_SUCCESS 
+} from './types';
 
 // ACTION CREATORS
 export const fetchRentals = () => {
+    return dispatch => {
+        axios.get(`/api/v1/rentals`)
+        .then(response => response.data)
+        .then(rentals =>  dispatch(fetchRentalsSuccess(rentals)));
+    }
+}
+
+const fetchRentalsSuccess = (rentals) => {
     return {
-        type:FETCH_RENTALS,
+        type:FETCH_RENTAL_SUCCESS,
         rentals: rentals
     }
 }
@@ -27,10 +38,8 @@ const fetchRentalByIdSuccess = (rental) => {
 export const fetchRentalById = (rentalId) => {
     return function(dispatch){
         dispatch(fetchRentalByIdInit());
-        //Simulate server call
-        setTimeout(() => {
-            const rental = rentals[rentalId - 1];
-            dispatch(fetchRentalByIdSuccess(rental))
-        },1000);
+
+        axios.get(`/api/v1/rentals/${rentalId}`).then(response => response.data)
+        .then(rental => dispatch(fetchRentalByIdSuccess(rental)))
     }
 }
