@@ -5,6 +5,7 @@ import {
     withGoogleMap,
     GoogleMap,
     Marker,
+    Circle
 } from "react-google-maps";
 
 function MapComponent(props) {
@@ -14,11 +15,12 @@ function MapComponent(props) {
 
     return (
         <GoogleMap
-        defaultZoom={8}
+        defaultZoom={30}
         defaultCenter={coordinates}
         >
-        <Marker
-        position={coordinates}
+        <Circle
+            center={coordinates}
+            radius={500}
         />
         </GoogleMap>
     )
