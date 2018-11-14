@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const bcrypt = require('bcryptjs');
 
 const userSchema = new Schema({
     username:{
@@ -24,6 +25,24 @@ const userSchema = new Schema({
         max: [32,'Too long, max is 32 characters']
     },
     rentals:[{type: Schema.Types.ObjectId, ref: 'Rental'}]
+});
+
+// this function run before save operation.
+// make sure you dont use arrow function because if you do than
+// you won't be able to use 'this'
+userSchema.pre('save', function(next){
+    const user = this;
+    
+    // we get the un-hashed password and conver that into hash format before saving to the
+    // database
+
+    const saltRound = 10;
+    bcrypt.genSalt(saltRound, function(error, salt) {
+        bcrypt.hash(user.password, salt, function(error, hash){
+            user.password = hash;
+            next();
+        });
+    });
 });
 
 module.exports = mongoose.model('User',userSchema); 

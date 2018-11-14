@@ -18,7 +18,7 @@ exports.register = function(req, res) {
     }
 
     // searching into the database with givin email id
-    User.findOne({email}, async (error, user) => {
+    User.findOne({email}, (error, user) => {
 
         // if something went wrong with database while searching user than we'll throw this error
         if(error)
@@ -32,10 +32,14 @@ exports.register = function(req, res) {
         const newUser = new User({ username, email, password });
 
         // saving to the database async
-        await newUser.save();
-
-        // sending response back if registration successfull
-        res.json({'status':true});
+        // await newUser.save();
+        newUser.save((error) => {
+            if(error) {
+                return res.status(422).send(createErrorObject('Database','Error occure while registering user')); 
+            }
+            // sending response back if registration successfull
+            return res.json({'status':true});
+        });
     });
 }
 
