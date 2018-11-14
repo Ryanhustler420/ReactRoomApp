@@ -8,6 +8,8 @@ import './App.css';
 import  Header  from './shared/Header';
 import RentalListing from './components/rental/rentalListing/rentalListing';
 import RentalDetail from './components/rental/rentalDetail/RentalDetail';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
 
 const store = require('./reducers').init();
 
@@ -22,6 +24,8 @@ class App extends Component {
             <Route exact path='/' render={() => <Redirect to='/rentals'/>}/>
               <Route exact path='/rentals' component={RentalListing}/>
               <Route exact path='/rentals/:id' component={RentalDetail}/>
+              <Route exact path='/login' component={Login}/>
+              <Route exact path='/register' component={Register}/>
             </div>
           </div>
         </BrowserRouter>
