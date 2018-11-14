@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const { normalizeErrors } = require('../helper/errorParser');
 
 exports.auth = function(req, res) {
     res.json({'auth':'route working'});
@@ -35,7 +36,7 @@ exports.register = function(req, res) {
         // await newUser.save();
         newUser.save((error) => {
             if(error) {
-                return res.status(422).send(createErrorObject('Database','Error occure while registering user')); 
+                return res.status(422).send({errors: normalizeErrors(error.errors)}); 
             }
             // sending response back if registration successfull
             return res.json({'status':true});
