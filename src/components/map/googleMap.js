@@ -5,23 +5,30 @@ import {
     withScriptjs,
     withGoogleMap,
     GoogleMap,
-    Marker,
-    Circle
+    Circle,
+    InfoWindow
 } from "react-google-maps";
 
 function MapComponent(props) {
 
-    const { coordinates } = props;
+    const { coordinates, isError, isLocationLoaded } = props;
 
     return (
         <GoogleMap
         defaultZoom={30}
         defaultCenter={coordinates}
         >
-        <Circle
-            center={coordinates}
-            radius={500}
-        />
+        { isLocationLoaded && !isError && <Circle center={coordinates} radius={500} />}
+        { isLocationLoaded && isError && <InfoWindow 
+                                            position={coordinates}
+                                            options={{maxWidth: 300}}>
+                <div>
+                    Opps, there is problem to find location on the map, we are trying to resolve problem as fast 
+                    as possible. contact host for additional information if you are still interested in booking this place
+                    .we are sorry for incoviniance.
+                </div>
+            </InfoWindow>
+        }    
         </GoogleMap>
     )
 }
@@ -36,7 +43,9 @@ function withGeocode(WrappedComponent){
                 coordinates : {
                     lat: 0,
                     lng: 0
-                }
+                },
+                isError: false,
+                isLocationLoaded: false
             }
         }
 
@@ -66,15 +75,16 @@ function withGeocode(WrappedComponent){
             const location = this.props.location;
             
             if(this.cacher.isValueCache(location)){
-                this.setState({coordinates: this.cacher.getCacheValue(location)});
+                this.setState({coordinates: this.cacher.getCacheValue(location), isLocationLoaded: true});
             }else{  
                 this.geoodeLocation(location)
                 .then((coordinates) => {
                     this.setState({
-                        coordinates
+                        coordinates,
+                        isLocationLoaded:true
                     });
                 },(error) => {
-                    console.log(error);
+                    this.setState({isError: true, isLocationLoaded:true});
                 });
             }
         }
