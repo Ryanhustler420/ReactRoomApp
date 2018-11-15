@@ -6,7 +6,7 @@ import { bwmInput } from './../shared/form/bwm-input';
 
 const RegisterForm = props => {
 
-    const { handleSubmit, pristine, reset, submitting, submitCb, valid } = props
+    const { handleSubmit, pristine, submitting, submitCb, valid } = props
     return (
         <form onSubmit={handleSubmit(submitCb)}>
 
@@ -67,7 +67,7 @@ const validate = values => {
         errors.passwordConfirm = "Please enter password confirmation!";
     }
 
-    if(values.password != values.passwordConfirm){
+    if(values.password !== values.passwordConfirm){
         errors.password = 'Password must be the same';
     }
     return errors
