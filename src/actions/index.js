@@ -56,3 +56,14 @@ export const register = (userData) => {
         }
     )
 }
+
+export const login = (userData) => {
+    return axios.post('/api/v1/users/auth', userData).then(
+        (res) => {
+            return res.data;
+        },
+        (error) => {
+            return Promise.reject(error.response.data.errors);
+        }
+    )
+}
