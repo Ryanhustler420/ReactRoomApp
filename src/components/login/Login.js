@@ -8,7 +8,6 @@ class Login extends Component {
     constructor() {
         super();
 
-
         this.loginUser = this.loginUser.bind(this);
     }
 

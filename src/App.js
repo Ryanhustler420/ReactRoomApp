@@ -11,9 +11,16 @@ import RentalDetail from './components/rental/rentalDetail/RentalDetail';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 
+import * as actions from './actions';
+
 const store = require('./reducers').init();
 
 class App extends Component {
+
+  componentWillMount() {
+    store.dispatch(actions.checkOutState());
+  }
+
   render() {
     return(
       <Provider store={store}>
