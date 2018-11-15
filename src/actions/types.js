@@ -5,3 +5,5 @@ export const FETCH_RENTAL_SUCCESS = 'FETCH_RENTAL_SUCCESS';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export const LOGOUT = 'LOGOUT';

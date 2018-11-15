@@ -21,12 +21,16 @@ class App extends Component {
     store.dispatch(actions.checkOutState());
   }
 
+  logout() {
+    store.dispatch(actions.logout());
+  }
+
   render() {
     return(
       <Provider store={store}>
         <BrowserRouter>
           <div>
-            <Header />
+            <Header logout={this.logout}/>
             <div className="container">
             <Route exact path='/' render={() => <Redirect to='/rentals'/>}/>
               <Route exact path='/rentals' component={RentalListing}/>

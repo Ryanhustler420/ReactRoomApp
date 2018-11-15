@@ -6,7 +6,8 @@ import {
     FETCH_RENTAL_BY_ID_INIT,
     FETCH_RENTAL_SUCCESS,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE
+    LOGIN_FAILURE,
+    LOGOUT
 } from './types';
 
 // ACTION CREATORS
@@ -73,7 +74,7 @@ export const login = (userData) => {
         return axios.post('/api/v1/users/auth', userData)
             .then(res => res.data)
             .then(token => {
-                localStorage.setItem('auth_token', token);
+                authService.saveToken(token);
                 dispatch(loginSuccess());
             }).catch(({response}) => {
                 dispatch(loginFailure(response.data.errors));
@@ -91,5 +92,13 @@ const loginFailure = (errors) => {
     return {
         type: LOGIN_FAILURE,
         errors
+    }
+}
+
+export const logout = () => {
+    authService.invalidateUser();
+    
+    return {
+        type: LOGOUT
     }
 }
