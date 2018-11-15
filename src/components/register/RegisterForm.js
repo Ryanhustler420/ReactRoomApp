@@ -1,26 +1,12 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { bwmInput } from './../shared/form/bwm-input';
 
-const renderField = ({
-    input,
-    label,
-    type,
-    className,
-    meta: { touched, error, warning }
-    }) => (
-    <div className="form-group">
-        <label>{label}</label>
-        <div className="input-group">
-            <input {...input} type={type} className={className}/>
-        </div>
-        {touched &&
-            ((error && <div className="alert alert-danger">{error}</div>))}
-    </div>
-    )
+
 
 const RegisterForm = props => {
 
-    const { handleSubmit, pristine, reset, submitting, submitCb } = props
+    const { handleSubmit, pristine, reset, submitting, submitCb, valid } = props
     return (
         <form onSubmit={handleSubmit(submitCb)}>
 
@@ -30,7 +16,7 @@ const RegisterForm = props => {
                         type="text"
                         label="username"
                         className="form-control"
-                        component={renderField}
+                        component={bwmInput}
                     />
                     
                     <Field
@@ -39,7 +25,7 @@ const RegisterForm = props => {
                         type="email"
                         label="email"
                         className="form-control"
-                        component={renderField}
+                        component={bwmInput}
                     />
                 
                     <Field
@@ -48,7 +34,7 @@ const RegisterForm = props => {
                         type="password"
                         label="password"
                         className="form-control"
-                        component={renderField}
+                        component={bwmInput}
                     />
         
                     <Field
@@ -57,9 +43,9 @@ const RegisterForm = props => {
                         type="password"
                         label="passwordConfirm"
                         className="form-control"
-                        component={renderField}
+                        component={bwmInput}
                     />
-                <button className="btn btn-bwm btn-form" type="submit" disabled={pristine || submitting}>
+                <button className="btn btn-bwm btn-form" disabled={!valid || pristine || submitting} type="submit">
                     Submit
                 </button>
         </form>
