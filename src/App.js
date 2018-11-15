@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import './App.css';
 
-import  Header  from './shared/Header';
+import Header from './components/shared/Header';
 import RentalListing from './components/rental/rentalListing/rentalListing';
 import RentalDetail from './components/rental/rentalDetail/RentalDetail';
 import Login from './components/login/Login';

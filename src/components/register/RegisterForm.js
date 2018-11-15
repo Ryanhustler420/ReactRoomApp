@@ -47,7 +47,7 @@ const RegisterForm = props => {
                         component={bwmInput}
                     />
                 <button className="btn btn-bwm btn-form" disabled={!valid || pristine || submitting} type="submit">
-                    Submit
+                    Register
                 </button>
                 <BwmResError errors={errors}/>
         </form>
