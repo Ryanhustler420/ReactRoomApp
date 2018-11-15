@@ -3,7 +3,9 @@ import axios from 'axios';
 import { 
     FETCH_RENTAL_BY_ID_SUCCESS, 
     FETCH_RENTAL_BY_ID_INIT,
-    FETCH_RENTAL_SUCCESS 
+    FETCH_RENTAL_SUCCESS,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE
 } from './types';
 
 // ACTION CREATORS
@@ -58,12 +60,28 @@ export const register = (userData) => {
 }
 
 export const login = (userData) => {
-    return axios.post('/api/v1/users/auth', userData).then(
-        (res) => {
-            return res.data;
-        },
-        (error) => {
-            return Promise.reject(error.response.data.errors);
-        }
-    )
+    return dispatch => {
+        return axios.post('/api/v1/users/auth', userData)
+            .then(res => res.data)
+            .then(token => {
+                localStorage.setItem('auth_token', token);
+                dispatch(loginSuccess(token));
+            }).catch((response) => {
+                dispatch(loginFailure(response.data.errors));
+            })
+    }
+}
+
+const loginSuccess = (token) => {
+    return {
+        type: LOGIN_SUCCESS,
+        token
+    }
+}
+
+const loginFailure = (errors) => {
+    return {
+        type: LOGIN_FAILURE,
+        errors
+    }
 }
