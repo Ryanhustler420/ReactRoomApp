@@ -3,29 +3,16 @@ import { Field, reduxForm } from 'redux-form'
 
 const RegisterForm = props => {
 
-    const { handleSubmit, pristine, reset, submitting } = props
+    const { handleSubmit, pristine, reset, submitting, submitCb } = props
     return (
-        <form className="form-group" onSubmit={handleSubmit}>
+        <form className="form-group" onSubmit={handleSubmit(submitCb)}>
             <div>
-                <label>First Name</label>
+                <label>Username</label>
                 <div>
                 <Field
-                    name="firstName"
+                    name="username"
                     component="input"
                     type="text"
-                    placeholder="First Name"
-                    className="form-control"
-                />
-                </div>
-            </div>
-            <div>
-                <label>Last Name</label>
-                <div>
-                <Field
-                    name="lastName"
-                    component="input"
-                    type="text"
-                    placeholder="Last Name"
                     className="form-control"
                 />
                 </div>
@@ -37,17 +24,35 @@ const RegisterForm = props => {
                     name="email"
                     component="input"
                     type="email"
-                    placeholder="Email"
                     className="form-control"
                 />
                 </div>
             </div>
             <div>
-                <button className="btn btn-success" type="submit" disabled={pristine || submitting}>
+                <label>Password</label>
+                <div>
+                <Field
+                    name="password"
+                    component="input"
+                    type="password"
+                    className="form-control"
+                />
+                </div>
+            </div>
+            <div>
+                <label>Confirm Password</label>
+                <div>
+                <Field
+                    name="passwordConfirm"
+                    component="input"
+                    type="password"
+                    className="form-control"
+                />
+                </div>
+            </div>
+            <div>
+                <button className="btn btn-bwm btn-form" type="submit" disabled={pristine || submitting}>
                 Submit
-                </button>
-                <button className="btn btn-danger" type="button" disabled={pristine || submitting} onClick={reset}>
-                Clear Values
                 </button>
             </div>
         </form>

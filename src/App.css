@@ -47,6 +47,8 @@
     background-color: rgba(0, 0, 0, 0.5);
     margin-top: 50px;
     letter-spacing: 1px; }
+  .bwm-form .btn-form {
+    margin-top: 15px; }
 
 .bwm-res-errors {
   margin: 10px 0; }
@@ -133,3 +135,14 @@
 
 .condo {
   color: #d68000; }
+
+.btn-bwm {
+  background-color: #61dafb;
+  border-color: #61dafb;
+  color: white;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer; }
+  .btn-bwm:hover, .btn-bwm:focus, .btn-bwm:active {
+    border-color: #61dafb !important;
+    background-color: #61dafb !important; }
