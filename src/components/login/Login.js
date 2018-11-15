@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import LoginForm from './LoginForm';
 import * as actions from '../../actions';
 
@@ -7,28 +8,16 @@ class Login extends Component {
     constructor() {
         super();
 
-        this.state = {
-            errors: []
-        }
 
         this.loginUser = this.loginUser.bind(this);
     }
 
     loginUser(userData){
-        actions.login(userData).then(
-            (response) => {
-                // redirect from here
-                // save token to browser
-            },
-            (errors) => {
-                // throw error
-                this.setState({errors:errors});
-            }
-        )
+        // actions.login(userData);
+        this.props.dispatch(actions.login(userData));
     }
 
     render() {
-        const { errors } = this.state;
 
         return (
             <div>
@@ -55,4 +44,11 @@ class Login extends Component {
     }
 }
 
-export default Login;
+
+function mapStateToProps(state) {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(Login);

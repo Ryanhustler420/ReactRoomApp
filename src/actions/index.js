@@ -66,7 +66,7 @@ export const login = (userData) => {
             .then(token => {
                 localStorage.setItem('auth_token', token);
                 dispatch(loginSuccess(token));
-            }).catch((response) => {
+            }).catch(({response}) => {
                 dispatch(loginFailure(response.data.errors));
             })
     }
