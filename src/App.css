@@ -127,6 +127,9 @@
   font-weight: 700;
   margin-bottom: 20px; }
 
+.clickable:hover {
+  cursor: pointer; }
+
 .apartment {
   color: #a72da3; }
 
