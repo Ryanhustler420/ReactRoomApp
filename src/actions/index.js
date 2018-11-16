@@ -1,15 +1,23 @@
 import axios from 'axios';
+import authService from '../services/auth-service';
+import AxiosService from '../services/axios-service';
 
 import { 
     FETCH_RENTAL_BY_ID_SUCCESS, 
     FETCH_RENTAL_BY_ID_INIT,
-    FETCH_RENTAL_SUCCESS 
+    FETCH_RENTAL_SUCCESS,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
+    LOGOUT
 } from './types';
 
 // ACTION CREATORS
+
+const axiosInstance = AxiosService.getInstance();
+
 export const fetchRentals = () => {
     return dispatch => {
-        axios.get(`/api/v1/rentals`)
+        axiosInstance.get(`/rentals`)
         .then(response => response.data)
         .then(rentals =>  dispatch(fetchRentalsSuccess(rentals)));
     }
@@ -41,5 +49,60 @@ export const fetchRentalById = (rentalId) => {
 
         axios.get(`/api/v1/rentals/${rentalId}`).then(response => response.data)
         .then(rental => dispatch(fetchRentalByIdSuccess(rental)))
+    }
+}
+
+// AUTH ACTIONS
+
+export const register = (userData) => {
+    return axios.post('/api/v1/users/register',userData).then(
+        (res) => {
+            return res.data;
+        },
+        (error) => {
+            return Promise.reject(error.response.data.errors);
+        }
+    )
+}
+
+export const checkOutState = () => {
+    return dispatch => {
+        if(authService.isAuthenticated()){
+            dispatch(loginSuccess());
+        }
+    }
+}
+
+export const login = (userData) => {
+    return dispatch => {
+        return axios.post('/api/v1/users/auth', userData)
+            .then(res => res.data)
+            .then(token => {
+                authService.saveToken(token);
+                dispatch(loginSuccess());
+            }).catch(({response}) => {
+                dispatch(loginFailure(response.data.errors));
+            })
+    }
+}
+
+const loginSuccess = () => {
+    return {
+        type: LOGIN_SUCCESS
+    }
+}
+
+const loginFailure = (errors) => {
+    return {
+        type: LOGIN_FAILURE,
+        errors
+    }
+}
+
+export const logout = () => {
+    authService.invalidateUser();
+    
+    return {
+        type: LOGOUT
     }
 }

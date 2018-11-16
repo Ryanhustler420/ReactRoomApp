@@ -3,7 +3,7 @@ const router = express.Router();
 const Rental = require('../models/rental');
 const UserCtrl = require('../controllers/userRouteFunction');
 
-router.get('', UserCtrl.authMiddleware ,(req,res) => {
+router.get('',(req,res) => {
     Rental.find({}, (err,rentals) => {
         res.json(rentals);
     });

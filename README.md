@@ -2463,3 +2463,5 @@ module.exports = {
 - npm i titlelize --save
 - npm install --save react-google-maps@9.4.5
 - npm install --save camel-case
+- npm i --save redux-form@7.3.0
+- npm i moment --save
