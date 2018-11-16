@@ -23,12 +23,10 @@ const bookingSchema = new Schema({
     },
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
+        ref: 'User'
     },
     rental: {
         type: Schema.Types.ObjectId,
-        required: true,
         ref: 'Rental'
     }
 });

@@ -5,7 +5,6 @@ const router = express.Router();
 const UserRouteFunc = require('../controllers/userRouteFunction');
 const BookingCtrl = require('../controllers/bookingRouteFunction');
 
-
-router.post('', BookingCtrl.createBooking);
+router.post('', UserRouteFunc.authMiddleware, BookingCtrl.createBooking);
 
 module.exports = router;
