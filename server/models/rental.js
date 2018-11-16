@@ -40,7 +40,8 @@ const rentalSchema = new Schema({
     user:{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    },
+    bookings:[{type: Schema.Types.ObjectId, ref: 'Booking'}]
 });
 
 module.exports = mongoose.model('Rental',rentalSchema); 
