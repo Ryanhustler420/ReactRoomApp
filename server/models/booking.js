@@ -11,12 +11,12 @@ const bookingSchema = new Schema({
         type: Date,
         required: 'Starting Date is Required'
     },
-    totalPrice:number,
+    totalPrice:Number,
     days:{
-        type: number,
+        type: Number,
         required: true
     },
-    guests:number,
+    guests:Number,
     createdAt: {
         type: Date,
         default: Date.now
