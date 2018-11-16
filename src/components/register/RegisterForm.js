@@ -13,7 +13,6 @@ const RegisterForm = props => {
 
                     <Field
                         name="username"
-                        component="input"
                         type="text"
                         label="username"
                         className="form-control"
@@ -22,7 +21,6 @@ const RegisterForm = props => {
                     
                     <Field
                         name="email"
-                        component="input"
                         type="email"
                         label="email"
                         className="form-control"
@@ -31,7 +29,6 @@ const RegisterForm = props => {
                 
                     <Field
                         name="password"
-                        component="input"
                         type="password"
                         label="password"
                         className="form-control"
@@ -40,7 +37,6 @@ const RegisterForm = props => {
         
                     <Field
                         name="passwordConfirm"
-                        component="input"
                         type="password"
                         label="passwordConfirm"
                         className="form-control"

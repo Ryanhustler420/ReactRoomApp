@@ -46,7 +46,7 @@ class Login extends Component {
                                     <h2 className="catchphrase">
                                         Hundreds of awesome places in reach of few clicks.
                                     </h2>
-                                    <img src="" alt=""/>
+                                    <img src={process.env.PUBLIC_URL + '/image/login-image.jpg'} alt=""/>
                                 </div>
                             </div>
                         </div>

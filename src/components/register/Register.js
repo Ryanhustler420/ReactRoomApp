@@ -46,7 +46,7 @@ class Register extends Component {
                         <div className="col-md-6 ml-auto">
                             <div className="image-container">
                                 <h2 className="catchphrase">As our member you have access to most awesome place in the world.</h2>
-                                <img src="" alt="" />
+                                <img src={process.env.PUBLIC_URL + '/image/create-rental.jpg'} alt="" />
                             </div>
                         </div>
                     </div>
