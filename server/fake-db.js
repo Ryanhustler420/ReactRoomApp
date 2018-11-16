@@ -42,6 +42,10 @@ class FakeDb {
             username: 'Gaurav Gupta',
             email: 'gouravgupta840@gmail.com',
             password: '123456'
+        },{
+            username: 'Saurav Gupta',
+            email: 'sauravgupta4000@gmail.com',
+            password: '123456'
         }]
     }
 
@@ -54,6 +58,7 @@ class FakeDb {
 
         // create new user with given property
         const user = new User(this.user[0]);
+        const user2 = new User(this.user[1]);
 
         this.rentals.forEach((rental) => {
             const newRental = new Rental(rental);
@@ -67,6 +72,7 @@ class FakeDb {
 
         // saving user at the end
         user.save();
+        user2.save();
     }
     async seedDb() {
         await this.cleanDB();
