@@ -1,6 +1,24 @@
 import React, { Component } from 'react'
+import DateRangePicker from 'react-bootstrap-daterangepicker';
 
 class Booking extends Component {
+
+
+    componentWillMount() {
+        this.getBookedOutDate();
+    }
+
+    getBookedOutDate() {
+        const { bookings } = this.props.rental;
+        
+        if(bookings && bookings.length > 0){
+            bookings.forEach(booking => {
+                //GET RANGE OF DATE HERE
+                console.log(booking);
+            });
+        }
+    }
+
     render() {
 
         const { rental } = this.props;
@@ -11,7 +29,9 @@ class Booking extends Component {
             <hr/>
             <div className='form-group'>
                 <label htmlFor='dates'>Dates </label>
-                
+                <DateRangePicker opens='left' containerStyles={{display: 'block'}}>
+                    <input id='dates' type='text' className='form-control'></input>
+                </DateRangePicker>
             </div>
             <div className='form-group'>
                 <label className='guests'>Guests</label>

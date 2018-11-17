@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap-daterangepicker/daterangepicker.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
