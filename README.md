@@ -2465,3 +2465,4 @@ module.exports = {
 - npm install --save camel-case
 - npm i --save redux-form@7.3.0
 - npm i moment --save
+- npm install react-responsive-modal@3.0.3 --save

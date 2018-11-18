@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import { getRangeOfDates } from './../../helpers/index';
 import * as moment from 'moment';
+import BookingModal from './BookingModal';
 
 class Booking extends Component {
 
@@ -9,14 +10,20 @@ class Booking extends Component {
         super();
         this.dateRef = React.createRef();
         this.state = {
-            startAt: '',
-            endAt: '',
-            guests: 0
+            proposedBooking: {
+                startAt: '',
+                endAt: '',
+                guests: 0
+            },
+            modal: {
+                open: false
+            }
         }
 
         this.bookedOutDates = [];
         this.checkInalidDates = this.checkInalidDates.bind(this);
         this.handleApply = this.handleApply.bind(this);
+        this.cancelConfirmation = this.cancelConfirmation.bind(this);
     }
 
     componentWillMount() {
@@ -46,19 +53,35 @@ class Booking extends Component {
         this.dateRef.current.value = startAt + ' to ' + endAt;
 
         this.setState({
-            startAt,
-            endAt
+            proposedBooking: [
+                startAt,
+                endAt
+            ]
         });
     }
 
     selectGuests(event){
         this.setState({
-            guests: parseInt(event.target.value)
+            proposedBooking: {
+                guests: parseInt(event.target.value)
+            }
         });
     }
 
-    reserve() {
-        console.log(this.state);
+    cancelConfirmation() {
+        this.setState({
+            modal: {
+                open: false
+            }
+        })
+    }
+
+    confirmPropseData() {
+        this.setState({
+            modal: {
+                open: true
+            }
+        })
     }
 
     render() {
@@ -79,12 +102,13 @@ class Booking extends Component {
                 <label className='guests'>Guests</label>
                 <input type='number' onChange={(event) => {this.selectGuests(event)}} className='form-control' id='guests' aria-describedby='guests' placeholder='' />
             </div>
-            <button onClick={() => this.reserve()} className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
+            <button onClick={() => this.confirmPropseData()} className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
             <hr />
             <p className='booking-note-title'>People are interested into this house</p>
             <p className='booking-note-text'>
                 More than 500 people checked this rental in last month.
             </p>
+            <BookingModal open={this.state.modal.open} closeModal={this.cancelConfirmation} />
         </div>
         )
     }
