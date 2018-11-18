@@ -13,7 +13,8 @@ class Booking extends Component {
             proposedBooking: {
                 startAt: '',
                 endAt: '',
-                guests: 0
+                guests: 0,
+                rental:{}
             },
             modal: {
                 open: false
@@ -53,16 +54,18 @@ class Booking extends Component {
         this.dateRef.current.value = startAt + ' to ' + endAt;
 
         this.setState({
-            proposedBooking: [
+            proposedBooking: {
+                ...this.state.proposedBooking,
                 startAt,
                 endAt
-            ]
+            }
         });
     }
 
     selectGuests(event){
         this.setState({
             proposedBooking: {
+                ...this.state.proposedBooking,
                 guests: parseInt(event.target.value)
             }
         });
@@ -77,7 +80,18 @@ class Booking extends Component {
     }
 
     confirmPropseData() {
+
+        const { startAt, endAt } = this.state.proposedBooking;
+        const { rental } = this.props;
+        const days = getRangeOfDates(startAt, endAt).length - 1;
+
         this.setState({
+            proposedBooking:{
+                ...this.state.proposedBooking,
+                days,
+                totalPrice: days * rental.dailyRate,
+                rental
+            },
             modal: {
                 open: true
             }
@@ -87,6 +101,7 @@ class Booking extends Component {
     render() {
 
         const { rental } = this.props;
+        const { startAt, endAt, guests } = this.state.proposedBooking;
 
         return (
         <div className='booking'>
@@ -102,13 +117,13 @@ class Booking extends Component {
                 <label className='guests'>Guests</label>
                 <input type='number' onChange={(event) => {this.selectGuests(event)}} className='form-control' id='guests' aria-describedby='guests' placeholder='' />
             </div>
-            <button onClick={() => this.confirmPropseData()} className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
+            <button disabled={!startAt || !endAt || !guests} onClick={() => this.confirmPropseData()} className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
             <hr />
             <p className='booking-note-title'>People are interested into this house</p>
             <p className='booking-note-text'>
                 More than 500 people checked this rental in last month.
             </p>
-            <BookingModal open={this.state.modal.open} closeModal={this.cancelConfirmation} />
+            <BookingModal booking={this.state.proposedBooking} open={this.state.modal.open} closeModal={this.cancelConfirmation} />
         </div>
         )
     }
