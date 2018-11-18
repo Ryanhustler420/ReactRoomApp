@@ -7,9 +7,16 @@ class Booking extends Component {
 
     constructor() {
         super();
+        this.dateRef = React.createRef();
+        this.state = {
+            startAt: '',
+            endAt: '',
+            guests: 0
+        }
 
         this.bookedOutDates = [];
         this.checkInalidDates = this.checkInalidDates.bind(this);
+        this.handleApply = this.handleApply.bind(this);
     }
 
     componentWillMount() {
@@ -32,6 +39,28 @@ class Booking extends Component {
         return this.bookedOutDates.includes(date.format('Y/MM/DD')) || date.diff(moment(), 'days') < 0;
     }
 
+    handleApply(event,picker){
+        const startAt = picker.startDate.format('Y/MM/DD');
+        const endAt = picker.endDate.format('Y/MM/DD');
+
+        this.dateRef.current.value = startAt + ' to ' + endAt;
+
+        this.setState({
+            startAt,
+            endAt
+        });
+    }
+
+    selectGuests(event){
+        this.setState({
+            guests: parseInt(event.target.value)
+        });
+    }
+
+    reserve() {
+        console.log(this.state);
+    }
+
     render() {
 
         const { rental } = this.props;
@@ -42,15 +71,15 @@ class Booking extends Component {
             <hr/>
             <div className='form-group'>
                 <label htmlFor='dates'>Dates </label>
-                <DateRangePicker isInvalidDate={this.checkInalidDates} opens='left' containerStyles={{display: 'block'}}>
-                    <input id='dates' type='text' className='form-control'></input>
+                <DateRangePicker onApply={this.handleApply} isInvalidDate={this.checkInalidDates} opens='left' containerStyles={{display: 'block'}}>
+                    <input ref={this.dateRef} id='dates' type='text' className='form-control'></input>
                 </DateRangePicker>
             </div>
             <div className='form-group'>
                 <label className='guests'>Guests</label>
-                <input type='number' className='form-control' id='guests' aria-describedby='emailHelp' placeholder='' />
+                <input type='number' onChange={(event) => {this.selectGuests(event)}} className='form-control' id='guests' aria-describedby='guests' placeholder='' />
             </div>
-            <button className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
+            <button onClick={() => this.reserve()} className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
             <hr />
             <p className='booking-note-title'>People are interested into this house</p>
             <p className='booking-note-text'>
