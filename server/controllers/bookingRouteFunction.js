@@ -62,7 +62,7 @@ exports.createBooking = function(req, res){
 
             }else{
                 // if the user is same as rental owener than we'll send error message because he/she can't book his/her own rental
-                return res.status(422).send({errors: createErrorObject('Invalid Booking','Choosen Date are already taken!')});
+                return res.status(422).send(createErrorObject('Invalid Booking','Choosen Date are already taken!'));
             }
         });
 

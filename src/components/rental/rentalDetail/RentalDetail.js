@@ -5,6 +5,7 @@ import { RentalDetailInfo } from './RentalDetailParts/RentalDetailInfo';
 import RentalMap from './RentalMap';
 
 import * as actions from '../../../actions';
+import Booking from './../../booking/Booking';
 
 class RentalDetail extends Component {
 
@@ -35,7 +36,9 @@ class RentalDetail extends Component {
                             <div className='col-md-8'>
                                 <RentalDetailInfo rental={rental}/>
                             </div>
-                            <div className='col-md-4'>BOOKING</div>
+                            <div className='col-md-4'>
+                                <Booking rental={rental}/>
+                            </div>
                         </div>
                     </div>
                 </section>

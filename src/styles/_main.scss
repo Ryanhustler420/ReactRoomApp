@@ -6,6 +6,8 @@
 @import './rental/rental-listing.scss';
 @import './rental/rental-detail.scss';
 
+@import './booking/booking.scss';
+
 .page-title {
     font-size: 30px;
     font-weight: 700;
@@ -42,4 +44,7 @@
         border-color: $main-color !important;
         background-color: $main-color !important;
     }
+}
+em {
+    font-weight: bold;
 }
