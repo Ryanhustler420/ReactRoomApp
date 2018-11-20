@@ -89,6 +89,7 @@ class Booking extends Component {
         const { startAt, endAt } = this.state.proposedBooking;
         const { rental } = this.props;
         const days = getRangeOfDates(startAt, endAt).length - 1;
+        this.setState({errors:[]}); 
 
         this.setState({
             proposedBooking:{
