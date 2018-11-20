@@ -33,7 +33,7 @@ exports.createBooking = function(req, res){
         .exec(function(err, foundRental){
             //checking error if we not got any rental with this id
             if(err)
-                return res.status(422).send({errors: normalizeErrors(err.errors)});
+                return res.status(422).send(createErrorObject('something wrong!',err.error));
 
             // we'll check if this rental owner id equlas with this user who is trying to make booking.
             if(foundRental.user.id === user.id)
@@ -49,7 +49,7 @@ exports.createBooking = function(req, res){
                 booking.save((error) => {
                     // checking error if we got any
                     if(error){
-                        return res.status(422).send({errors: normalizeErrors(err.errors)});
+                        return res.status(422).send(createErrorObject('something wrong!',err.error));
                     }
                     // updating user bookings array by pushing
                         User.update({_id: user.id}, {$push: {bookings:booking}},(err,data) => {});
