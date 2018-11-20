@@ -15,8 +15,7 @@ class Booking extends Component {
             proposedBooking: {
                 startAt: '',
                 endAt: '',
-                guests: 0,
-                rental:{}
+                guests: ''
             },
             modal: {
                 open: false
@@ -105,11 +104,27 @@ class Booking extends Component {
 
     reserveRental() {
         actions.createBooking(this.state.proposedBooking).then(
-            (booking) => { debugger; },
+            (booking) => { 
+                this.addNewBookedOutDates(booking);
+                this.cancelConfirmation();
+                this.resetdata();
+            },
             (errors) => {
                 this.setState({errors}); 
             }
         )
+
+
+    }
+
+    addNewBookedOutDates(booking) {
+        const dateaRange = getRangeOfDates(booking.startAt, booking.endAt);
+        this.bookedOutDates.push(...dateaRange);
+    }
+
+    resetdata() {
+        this.dateRef.current.value = '';
+        this.setState({proposedBooking: {guests: ''}});
     }
 
     render() {
@@ -129,7 +144,7 @@ class Booking extends Component {
             </div>
             <div className='form-group'>
                 <label className='guests'>Guests</label>
-                <input type='number' onChange={(event) => {this.selectGuests(event)}} className='form-control' id='guests' aria-describedby='guests' placeholder='' />
+                <input value={guests} type='number' onChange={(event) => {this.selectGuests(event)}} className='form-control' id='guests' aria-describedby='guests' placeholder='' />
             </div>
             <button disabled={!startAt || !endAt || !guests} onClick={() => this.confirmPropseData()} className='btn btn-bwm btn-confirm btn-block'>Reserve place now</button>
             <hr />
@@ -137,7 +152,7 @@ class Booking extends Component {
             <p className='booking-note-text'>
                 More than 500 people checked this rental in last month.
             </p>
-            <BookingModal errors={this.state.errors} confirmModal={this.reserveRental} booking={this.state.proposedBooking} open={this.state.modal.open} closeModal={this.cancelConfirmation} />
+            <BookingModal rentalPrice={rental.dailyRate} errors={this.state.errors} confirmModal={this.reserveRental} booking={this.state.proposedBooking} open={this.state.modal.open} closeModal={this.cancelConfirmation} />
         </div>
         )
     }
