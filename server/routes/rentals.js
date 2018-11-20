@@ -13,7 +13,7 @@ router.get('',(req,res) => {
         .select('-bookings') // this means we dont want bookings array here
         .exec(function(error, filterRentals){
             if(error)
-                return res.status(422).send({error:normalizeErrors(error.errors)});
+                return res.status(422).send({errors:normalizeErrors(error.errors)});
 
             // if lenght of foundRental is 0 thats means we dont got any rental by search query
             if(filterRentals.length == 0)
@@ -32,7 +32,7 @@ router.get('/:id', (req,res) => {
         .populate('bookings', 'startAt endAt -_id')
             .exec(function(err,foundRental){
                 if(err){
-                    return res.status(422).send({error:[{title:'Rental Error!', detail: 'Could not find Rental!'}]});
+                    return res.status(422).send({errors:[{title:'Rental Error!', detail: 'Could not find Rental!'}]});
                 }
         return res.json(foundRental);
     });
