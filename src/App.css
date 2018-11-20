@@ -204,3 +204,6 @@
   .btn-bwm:hover, .btn-bwm:focus, .btn-bwm:active {
     border-color: #61dafb !important;
     background-color: #61dafb !important; }
+
+em {
+  font-weight: bold; }

@@ -4,6 +4,8 @@ import { getRangeOfDates } from './../../helpers/index';
 import * as moment from 'moment';
 import BookingModal from './BookingModal';
 
+import * as actions from '../../actions';
+
 class Booking extends Component {
 
     constructor() {
@@ -18,13 +20,15 @@ class Booking extends Component {
             },
             modal: {
                 open: false
-            }
+            },
+            errors: []
         }
 
         this.bookedOutDates = [];
         this.checkInalidDates = this.checkInalidDates.bind(this);
         this.handleApply = this.handleApply.bind(this);
         this.cancelConfirmation = this.cancelConfirmation.bind(this);
+        this.reserveRental = this.reserveRental.bind(this);
     }
 
     componentWillMount() {
@@ -36,7 +40,7 @@ class Booking extends Component {
         
         if(bookings && bookings.length > 0){
             bookings.forEach(booking => {
-                const dateRange = getRangeOfDates(booking.startAt, booking.endAt, 'Y/MM/DD');
+                const dateRange = getRangeOfDates(booking.startAt, booking.endAt, 'YYYY-MM-DD');
                 this.bookedOutDates.push(...dateRange);
             });
         }
@@ -44,12 +48,12 @@ class Booking extends Component {
 
     // this function getting date from calandar event
     checkInalidDates(date){
-        return this.bookedOutDates.includes(date.format('Y/MM/DD')) || date.diff(moment(), 'days') < 0;
+        return this.bookedOutDates.includes(date.format('YYYY-MM-DD')) || date.diff(moment(), 'days') < 0;
     }
 
     handleApply(event,picker){
-        const startAt = picker.startDate.format('Y/MM/DD');
-        const endAt = picker.endDate.format('Y/MM/DD');
+        const startAt = picker.startDate.format('YYYY-MM-DD');
+        const endAt = picker.endDate.format('YYYY-MM-DD');
 
         this.dateRef.current.value = startAt + ' to ' + endAt;
 
@@ -63,10 +67,11 @@ class Booking extends Component {
     }
 
     selectGuests(event){
+        const totalGuests = parseInt(event.target.value,10);
         this.setState({
             proposedBooking: {
                 ...this.state.proposedBooking,
-                guests: parseInt(event.target.value)
+                guests: totalGuests
             }
         });
     }
@@ -98,6 +103,15 @@ class Booking extends Component {
         })
     }
 
+    reserveRental() {
+        actions.createBooking(this.state.proposedBooking).then(
+            (booking) => { debugger; },
+            (errors) => {
+                this.setState({errors}); 
+            }
+        )
+    }
+
     render() {
 
         const { rental } = this.props;
@@ -123,7 +137,7 @@ class Booking extends Component {
             <p className='booking-note-text'>
                 More than 500 people checked this rental in last month.
             </p>
-            <BookingModal booking={this.state.proposedBooking} open={this.state.modal.open} closeModal={this.cancelConfirmation} />
+            <BookingModal errors={this.state.errors} confirmModal={this.reserveRental} booking={this.state.proposedBooking} open={this.state.modal.open} closeModal={this.cancelConfirmation} />
         </div>
         )
     }

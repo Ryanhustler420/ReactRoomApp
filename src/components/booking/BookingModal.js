@@ -1,12 +1,13 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
+import { BwmResError } from './../shared/form/bwmResError';
 
 const BookingModal = (props) => {
 
-    const { open, closeModal, booking } = props;
+    const { open, closeModal, booking, confirmModal, errors } = props;
 
     return (
-        <Modal open={open} onClose={closeModal} little classNames='booking-modal'>
+        <Modal open={open} onClose={closeModal} little className='booking-modal'>
             <h4 className='modal-title title'>Confirm Booking</h4>
             <p className='dates'>{booking.startAt} / {booking.endAt}</p>
             <div className='modal-body'>
@@ -16,8 +17,9 @@ const BookingModal = (props) => {
                 <p>Price: <em>{booking.totalPrice}$ </em></p>
                 <p>Do you confirm your booking for selected days?</p>
             </div>
+            <BwmResError errors={errors} />
             <div className='modal-footer'>
-                <button type='button' className='btn btn-bwm'>Confirm</button>
+                <button onClick={confirmModal} type='button' className='btn btn-bwm'>Confirm</button>
                 <button type='button' onClick={closeModal} className='btn btn-bwm'>Cancel</button>
             </div>
         </Modal>
