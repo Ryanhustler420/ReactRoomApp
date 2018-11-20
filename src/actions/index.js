@@ -6,6 +6,8 @@ import {
     FETCH_RENTAL_BY_ID_SUCCESS, 
     FETCH_RENTAL_BY_ID_INIT,
     FETCH_RENTAL_SUCCESS,
+    FETCH_RENTAL_INIT,
+    FETCH_RENTAL_FAIL,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGOUT
@@ -15,11 +17,32 @@ import {
 
 const axiosInstance = AxiosService.getInstance();
 
-export const fetchRentals = () => {
+const fetchRentalsInit = () => {
+    return {
+        type: FETCH_RENTAL_INIT
+    }
+}
+
+const fetchRentalFail = (errors) => {
+    return {
+        type: FETCH_RENTAL_FAIL,
+        errors
+    }
+}
+
+export const fetchRentals = (city) => {
+
+    const url = city ? `/rentals?city=${city}` : '/rentals';
+
     return dispatch => {
-        axiosInstance.get(`/rentals`)
+
+        // cleane state before making any renatal request
+        dispatch(fetchRentalsInit());
+
+        axiosInstance.get(url)
         .then(response => response.data)
-        .then(rentals =>  dispatch(fetchRentalsSuccess(rentals)));
+        .then(rentals =>  dispatch(fetchRentalsSuccess(rentals)))
+        .catch(({response}) => dispatch(fetchRentalFail(response.data.errors)));
     }
 }
 
