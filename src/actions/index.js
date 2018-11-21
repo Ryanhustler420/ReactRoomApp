@@ -135,3 +135,9 @@ export const createBooking = (booking) => {
     .then(res => res.data)
     .catch(({response}) => Promise.reject(response.data.errors))
 }
+
+export const createRental = (rental) => {
+    return axiosInstance.post('/rentals',rental)
+    .then(res => res.data)
+    .catch(({response}) => Promise.reject(response.data.errors))
+}
