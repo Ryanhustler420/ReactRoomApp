@@ -5,6 +5,9 @@ export default class RentalCreate extends Component {
 
     constructor() {
         super();
+
+        this.rentalsCategories = ['apartment','house','condo'];
+
         this.state = {
             errors: []
         }
@@ -23,7 +26,7 @@ export default class RentalCreate extends Component {
                     <div className='row'>
                         <div className='col-md-5'>
                             <h1 className='page-title'>Create Rental</h1>
-                            <CreateRentalForm createRental={this.createRental} errors={this.state.errors}/>
+                            <CreateRentalForm createRental={this.createRental} errors={this.state.errors} options={this.rentalsCategories}/>
                         </div>
                         <div className='col-md-6 ml-auto'>
                             <div className='image-container'>
