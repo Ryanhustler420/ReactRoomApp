@@ -5,6 +5,7 @@ import { bwmInput } from './../../shared/form/bwm-input';
 import { BwmResError } from './../../shared/form/bwmResError';
 import { bwmTextArea } from './../../shared/form/BwmTextArea';
 import { bwmSelect } from './../../shared/form/bwmSelect';
+import BwmFile from './../../shared/form/bwmFile';
 
 const CreateRentalForm = props => {
     const { handleSubmit, pristine, submitting, valid, createRental ,errors, options } = props
@@ -50,6 +51,12 @@ const CreateRentalForm = props => {
                 component={bwmSelect}
                 options={options}
             />
+            
+            <Field
+                name="iamge"
+                label="Image"
+                component={BwmFile}
+            />
 
             <Field
                 name="bedrooms"
@@ -64,8 +71,16 @@ const CreateRentalForm = props => {
                 type="number"            
                 label="Daily Rates"
                 className="form-control"
+                symbol="$"
                 component={bwmInput}
             />        
+            
+            <Field
+                name="shared"
+                type="checkbox"            
+                label="Shared"
+                component={bwmInput}
+            />     
 
             <button type="submit" className="btn btn-bwm btn-form" disabled={!valid || pristine || submitting}>
                 Create
