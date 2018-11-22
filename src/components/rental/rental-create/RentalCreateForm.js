@@ -53,7 +53,7 @@ const CreateRentalForm = props => {
             />
             
             <Field
-                name="iamge"
+                name="image"
                 label="Image"
                 component={BwmFile}
             />
@@ -67,9 +67,9 @@ const CreateRentalForm = props => {
             />
 
             <Field
-                name="dailyRates"
+                name="dailyRate"
                 type="number"            
-                label="Daily Rates"
+                label="Daily Rate"
                 className="form-control"
                 symbol="$"
                 component={bwmInput}
@@ -85,11 +85,15 @@ const CreateRentalForm = props => {
             <button type="submit" className="btn btn-bwm btn-form" disabled={!valid || pristine || submitting}>
                 Create
             </button>
-            <BwmResError errors={errors} />
+            {/* <BwmResError errors={errors} /> */}
         </form>
     )
 }
 
 export default reduxForm({
-    form: 'createRentalForm'
+    form: 'createRentalForm',
+    initialValues: {
+        shared: false,
+        category: 'apartment'
+    }
 })(CreateRentalForm)

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import CreateRentalForm from './RentalCreateForm';
+import * as actions from '../../../actions';
+import { Redirect } from 'react-router-dom';
 
-export default class RentalCreate extends Component {
+class RentalCreate extends Component {
 
     constructor() {
         super();
@@ -9,7 +11,8 @@ export default class RentalCreate extends Component {
         this.rentalsCategories = ['apartment','house','condo'];
 
         this.state = {
-            errors: []
+            errors: [],
+            redirect: false
         }
 
         this.createRental = this.createRental.bind(this);
@@ -17,16 +20,29 @@ export default class RentalCreate extends Component {
 
     createRental(rentalData) {
         console.log(rentalData);
+        actions.createRental(rentalData).then(
+            (rental) => this.setState({redirect: true}),
+            (errors) => this.setState({errors})
+        ) 
     }
 
     render() {
+
+        if(this.state.redirect){
+            return <Redirect to={{pathname: '/rentals'}} />
+        }
+
         return (
             <section id='newRental'>
                 <div className='bwm-form'>
                     <div className='row'>
                         <div className='col-md-5'>
                             <h1 className='page-title'>Create Rental</h1>
-                            <CreateRentalForm createRental={this.createRental} errors={this.state.errors} options={this.rentalsCategories}/>
+                            <CreateRentalForm 
+                                createRental={this.createRental} 
+                                errors={this.state.errors} 
+                                options={this.rentalsCategories}  
+                            />
                         </div>
                         <div className='col-md-6 ml-auto'>
                             <div className='image-container'>
@@ -40,3 +56,5 @@ export default class RentalCreate extends Component {
         )
     }
 }
+
+export default RentalCreate;

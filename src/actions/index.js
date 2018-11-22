@@ -75,6 +75,19 @@ export const fetchRentalById = (rentalId) => {
     }
 }
 
+export const createBooking = (booking) => {
+    return axiosInstance.post('/bookings', booking)
+    .then(res => res.data)
+    .catch(({response}) => Promise.reject(response.data.errors))
+}
+
+export const createRental = (rental) => {
+    return axiosInstance.post('/rentals',rental).then(
+        res => res.data,
+        err => Promise.reject(err.response.data.errors)
+    )
+}
+
 // AUTH ACTIONS
 
 export const register = (userData) => {
@@ -128,16 +141,4 @@ export const logout = () => {
     return {
         type: LOGOUT
     }
-}
-
-export const createBooking = (booking) => {
-    return axiosInstance.post('/bookings', booking)
-    .then(res => res.data)
-    .catch(({response}) => Promise.reject(response.data.errors))
-}
-
-export const createRental = (rental) => {
-    return axiosInstance.post('/rentals',rental)
-    .then(res => res.data)
-    .catch(({response}) => Promise.reject(response.data.errors))
 }
