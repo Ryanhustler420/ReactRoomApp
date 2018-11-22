@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 
 import * as actions from '../../../actions';
 import  RentalList  from './RentalList';
+
 import { toUpperCase } from '../../../helpers';
+
 
 class RentalSearchListing extends Component {
 
     constructor() {
         super();
-        
         this.state = {
             searchedCity: ''
         }
@@ -49,6 +50,7 @@ class RentalSearchListing extends Component {
             title = `Your home in ${toUpperCase(searchedCity)}`
         }
         return <h1 className='page-title'>{title}</h1>
+
     }
 
     render() {
