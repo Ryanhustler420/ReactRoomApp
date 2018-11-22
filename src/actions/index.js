@@ -123,8 +123,10 @@ export const login = (userData) => {
 }
 
 const loginSuccess = () => {
+    const username = authService.getUsername();
     return {
-        type: LOGIN_SUCCESS
+        type: LOGIN_SUCCESS,
+        username
     }
 }
 

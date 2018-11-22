@@ -15,9 +15,7 @@ class Header extends Component {
         this.props.history.push('/login');
     }
 
-    renderAuthBtn() {
-        const { isAuth } = this.props.auth;
-
+    renderAuthBtn(isAuth) {
         if(isAuth){
             return <a className="nav-item nav-link clickable" onClick={this.handleLogout}>Logout</a>
         }
@@ -30,29 +28,44 @@ class Header extends Component {
         )
     }
 
+    renderOwnerSection(isAuth) {
+        if(isAuth){
+            return (
+                <div className='nav-item dropdown'>
+                    <a className='nav-link nav-item dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' >
+                        Owner Section
+                    </a>
+                    <div className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                        <Link className='dropdown-item' to='/rentals/new'>Create Rental</Link>
+                        <Link className='dropdown-item' to='#'>Manage Rental</Link>
+                        <Link className='dropdown-item' to='#'>Create Bookings</Link>
+                    </div>
+                </div>
+            )
+        }
+    }
+
     render() {
+
+        const {username, isAuth} = this.props.auth;
+
         return(
             <nav className='navbar navbar-dark navbar-expand-lg'>
                 <div className='container'>
                     <Link className='navbar-brand' to='/rentals'>React Rooms</Link>
                         <RentalSearchInput />
-                    <button className='navbar-toggler' type='button' data-toggle='collapse' data-targer='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup'
+                    <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup'
                             aria-expanded='false' aria-label='Toggle navigation'>
                         <span className='navbar-toggler-icon'></span>
                     </button>
                     <div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
                         <div className='navbar-nav ml-auto'>
-                        <div className='nav-item dropdown'>
-                            <a className='nav-link nav-item dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' >
-                                Owner Section
-                            </a>
-                            <div className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
-                                <Link className='dropdown-item' to='/rentals/new'>Create Rental</Link>
-                                <Link className='dropdown-item' to='#'>Manage Rental</Link>
-                                <Link className='dropdown-item' to='#'>Create Bookings</Link>
-                            </div>
-                        </div>
-                            {this.renderAuthBtn()}
+                            {
+                                isAuth && 
+                                <a className='nav-item nav-link' href='#'>{username}</a>
+                            }
+                            {this.renderOwnerSection(isAuth)}
+                            {this.renderAuthBtn(isAuth)}
                         </div>
                     </div>
                 </div>

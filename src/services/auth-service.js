@@ -9,6 +9,10 @@ class AuthService {
         return localStorage.getItem(this.TOKEN_NAME);
     }
 
+    getUsername(){
+        return this.decode(this.getToken()).username;
+    }
+
     decode(token) {
         return jwt.decode(token);
     }
