@@ -32,7 +32,7 @@ class Header extends Component {
         if(isAuth){
             return (
                 <div className='nav-item dropdown'>
-                    <a className='nav-link nav-item dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' >
+                    <a className='nav-link nav-item dropdown-toggle clickable' id='navbarDropdownMenuLink' data-toggle='dropdown' >
                         Owner Section
                     </a>
                     <div className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
@@ -62,7 +62,7 @@ class Header extends Component {
                         <div className='navbar-nav ml-auto'>
                             {
                                 isAuth && 
-                                <a className='nav-item nav-link' href='#'>{username}</a>
+                                <a className='nav-item nav-link clickable'>{username}</a>
                             }
                             {this.renderOwnerSection(isAuth)}
                             {this.renderAuthBtn(isAuth)}
