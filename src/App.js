@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 
@@ -10,9 +10,12 @@ import RentalListing from './components/rental/rentalListing/rentalListing';
 import RentalDetail from './components/rental/rentalDetail/RentalDetail';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import RentalSearchListing from './components/rental/rentalListing/RentalSearchListing';
+import RentalCreate from './components/rental/rental-create/RentalCreate';
 
 import ProtectedRoute from './components/shared/auth/protectedRoute';
 import LoggedInRoute from './components/shared/auth/loggedInRoute';
+
 import * as actions from './actions';
 import RentalSearchListing from './components/rental/rentalListing/RentalSearchListing';
 
@@ -38,7 +41,12 @@ class App extends Component {
             <Route exact path='/' render={() => <Redirect to='/rentals'/>}/>
               <Route exact path='/rentals' component={RentalListing}/>
               <Route exact path='/rentals/:city/homes' component={RentalSearchListing}/>
-              <ProtectedRoute exact path='/rentals/:id' component={RentalDetail}/>
+
+              <Switch>
+                <ProtectedRoute exact path='/rentals/new' component={RentalCreate}/>
+                <ProtectedRoute exact path='/rentals/:id' component={RentalDetail}/>
+              </Switch>
+
               <LoggedInRoute exact path='/login' component={Login}/>
               <LoggedInRoute exact path='/register' component={Register}/>
             </div>

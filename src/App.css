@@ -23,6 +23,10 @@
       box-shadow: none; }
   .navbar .nav-item {
     color: #ededed; }
+  .navbar .dropdown-menu .dropdown-item {
+    font-size: 14px; }
+    .navbar .dropdown-menu .dropdown-item:active {
+      background-color: #61dafb; }
 
 .bwm-form {
   color: #454545; }

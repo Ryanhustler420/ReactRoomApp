@@ -6,6 +6,8 @@ import {
     FETCH_RENTAL_BY_ID_SUCCESS, 
     FETCH_RENTAL_BY_ID_INIT,
     FETCH_RENTAL_SUCCESS,
+    FETCH_RENTAL_INIT,
+    FETCH_RENTAL_FAIL,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGOUT
@@ -15,11 +17,32 @@ import {
 
 const axiosInstance = AxiosService.getInstance();
 
-export const fetchRentals = () => {
+const fetchRentalsInit = () => {
+    return {
+        type: FETCH_RENTAL_INIT
+    }
+}
+
+const fetchRentalFail = (errors) => {
+    return {
+        type: FETCH_RENTAL_FAIL,
+        errors
+    }
+}
+
+export const fetchRentals = (city) => {
+
+    const url = city ? `/rentals?city=${city}` : '/rentals';
+
     return dispatch => {
-        axiosInstance.get(`/rentals`)
+
+        // cleane state before making any renatal request
+        dispatch(fetchRentalsInit());
+
+        axiosInstance.get(url)
         .then(response => response.data)
-        .then(rentals =>  dispatch(fetchRentalsSuccess(rentals)));
+        .then(rentals =>  dispatch(fetchRentalsSuccess(rentals)))
+        .catch(({response}) => dispatch(fetchRentalFail(response.data.errors)));
     }
 }
 
@@ -50,6 +73,19 @@ export const fetchRentalById = (rentalId) => {
         axios.get(`/api/v1/rentals/${rentalId}`).then(response => response.data)
         .then(rental => dispatch(fetchRentalByIdSuccess(rental)))
     }
+}
+
+export const createBooking = (booking) => {
+    return axiosInstance.post('/bookings', booking)
+    .then(res => res.data)
+    .catch(({response}) => Promise.reject(response.data.errors))
+}
+
+export const createRental = (rental) => {
+    return axiosInstance.post('/rentals',rental).then(
+        res => res.data,
+        err => Promise.reject(err.response.data.errors)
+    )
 }
 
 // AUTH ACTIONS
@@ -87,8 +123,10 @@ export const login = (userData) => {
 }
 
 const loginSuccess = () => {
+    const username = authService.getUsername();
     return {
-        type: LOGIN_SUCCESS
+        type: LOGIN_SUCCESS,
+        username
     }
 }
 
@@ -105,10 +143,4 @@ export const logout = () => {
     return {
         type: LOGOUT
     }
-}
-
-export const createBooking = (booking) => {
-    return axiosInstance.post('/bookings', booking)
-    .then(res => res.data)
-    .catch(({response}) => Promise.reject(response.data.errors))
 }
