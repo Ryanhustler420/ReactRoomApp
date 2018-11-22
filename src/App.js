@@ -10,12 +10,13 @@ import RentalListing from './components/rental/rentalListing/rentalListing';
 import RentalDetail from './components/rental/rentalDetail/RentalDetail';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
+import RentalSearchListing from './components/rental/rentalListing/RentalSearchListing';
+import RentalCreate from './components/rental/rental-create/RentalCreate';
 
 import ProtectedRoute from './components/shared/auth/protectedRoute';
 import LoggedInRoute from './components/shared/auth/loggedInRoute';
+
 import * as actions from './actions';
-import RentalSearchListing from './components/rental/rentalListing/RentalSearchListing';
-import RentalCreate from './components/rental/rental-create/RentalCreate';
 
 const store = require('./reducers').init();
 

@@ -11,7 +11,7 @@ class RentalSearchListing extends Component {
         super();
         
         this.state = {
-            searchedCity: '',
+            searchedCity: ''
         }
     }
 
