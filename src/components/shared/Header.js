@@ -42,6 +42,16 @@ class Header extends Component {
                     </button>
                     <div className='collapse navbar-collapse' id='navbarNavAltMarkup'>
                         <div className='navbar-nav ml-auto'>
+                        <div className='nav-item dropdown'>
+                            <a className='nav-link nav-item dropdown-toggle' href='#' id='navbarDropdownMenuLink' data-toggle='dropdown' >
+                                Owner Section
+                            </a>
+                            <div className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
+                                <Link className='dropdown-item' to='/rentals/new'>Create Rental</Link>
+                                <Link className='dropdown-item' to='#'>Manage Rental</Link>
+                                <Link className='dropdown-item' to='#'>Create Bookings</Link>
+                            </div>
+                        </div>
                             {this.renderAuthBtn()}
                         </div>
                     </div>
