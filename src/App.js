@@ -17,7 +17,6 @@ import ProtectedRoute from './components/shared/auth/protectedRoute';
 import LoggedInRoute from './components/shared/auth/loggedInRoute';
 
 import * as actions from './actions';
-import RentalSearchListing from './components/rental/rentalListing/RentalSearchListing';
 
 const store = require('./reducers').init();
 

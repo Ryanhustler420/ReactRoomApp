@@ -1,7 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { bwmInput } from './../../shared/form/bwm-input';
-// import { require, minLength4 } from '../../shared/form/validators';
+import { require } from '../../shared/form/validators';
 import { BwmResError } from './../../shared/form/bwmResError';
 import { bwmTextArea } from './../../shared/form/BwmTextArea';
 import { bwmSelect } from './../../shared/form/bwmSelect';
@@ -17,6 +17,7 @@ const CreateRentalForm = props => {
                 label="Title"
                 className="form-control"
                 component={bwmInput}
+                validate={[require]}
             />
 
             <Field
@@ -26,6 +27,7 @@ const CreateRentalForm = props => {
                 label="Description"
                 className="form-control"
                 component={bwmTextArea}
+                validate={[require]}
             />  
 
             <Field
@@ -34,6 +36,7 @@ const CreateRentalForm = props => {
                 label="City"
                 className="form-control"
                 component={bwmInput}
+                validate={[require]}
             />
 
             <Field
@@ -42,6 +45,7 @@ const CreateRentalForm = props => {
                 label="Street"
                 className="form-control"
                 component={bwmInput}
+                validate={[require]}
             />
 
             <Field
@@ -50,12 +54,14 @@ const CreateRentalForm = props => {
                 className="form-control"
                 component={bwmSelect}
                 options={options}
+                validate={[require]}
             />
             
             <Field
                 name="image"
                 label="Image"
                 component={BwmFile}
+                validate={[require]}
             />
 
             <Field
@@ -64,6 +70,7 @@ const CreateRentalForm = props => {
                 label="Bedrooms"
                 className="form-control"
                 component={bwmInput}
+                validate={[require]}
             />
 
             <Field
@@ -73,6 +80,7 @@ const CreateRentalForm = props => {
                 className="form-control"
                 symbol="$"
                 component={bwmInput}
+                validate={[require]}
             />        
             
             <Field

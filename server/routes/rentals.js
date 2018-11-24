@@ -42,6 +42,7 @@ router.post('', UserCtrl.authMiddleware, (req, res) => {
     const { title, street, city, category, image, bedrooms, shared, description, dailyRate } = req.body;
     const newRental = new Rental({ title, street, city, category, image, bedrooms, shared, description, dailyRate });
     const user = res.locals.user;
+    newRental.user = user;
     Rental.create(newRental, (error, rental) => {
         if(error)
             return res.status(422).send({errors: normalizeErrors(error.errors)});
@@ -49,6 +50,39 @@ router.post('', UserCtrl.authMiddleware, (req, res) => {
         User.updateOne({_id: user.id},{$push: {rentals: rental}},(error, data) => {});
         return res.json(rental);
     })
+});
+
+router.delete('/:id', UserCtrl.authMiddleware, (req, res) => {
+    const user = res.locals.user;
+
+    Rental.findById(req.params.id) // this is params => /:id
+    .populate('user','_id')
+    .populate({
+        path: 'bookings',
+        select: 'startAt',
+        match: {startAt: {$gt : new Date()}}
+    })
+    .exec((error, foundRental) => {
+
+        if(error)
+            return res.status(422).send({errors: normalizeErrors(error.errors)});
+
+        console.log(foundRental);
+        if(user.id !== foundRental.user.id)
+            return res.status(422).send(createErrorObject('Invalid User!','You are not rental Owner'));
+
+        if(foundRental.bookings.length > 0)
+            return res.status(422).send(createErrorObject('Active Bookings!','Could not delete rental with active bookings!'));
+    
+        foundRental.remove((error) => {
+            if(error)
+                return res.status(422).send({errors: normalizeErrors(error.errors)});
+
+            return res.json({
+                status: 'deleted'
+            });
+        });
+    });
 });
 
 // create error message object as a helper method
