@@ -181,6 +181,34 @@
 .daterangepicker td.active {
   background-color: #61dafb !important; }
 
+#userBookings .card {
+  margin-bottom: 20px; }
+
+#userBookings h1 {
+  margin-bottom: 20px; }
+
+#userBookings .card-block {
+  text-transform: capitalize;
+  margin: 10px 0px; }
+
+#userBookings .card-title {
+  font-size: 18px; }
+
+#userBookings .booking-desc {
+  font-size: 14px; }
+
+#userBookings .booking-days {
+  font-size: 14px;
+  font-weight: bold; }
+
+#userBookings .booking-price-value {
+  font-weight: 700; }
+
+#userBookings .btn-bwm {
+  color: white;
+  font-size: 14px;
+  padding: 15px; }
+
 .page-title {
   font-size: 30px;
   font-weight: 700;
