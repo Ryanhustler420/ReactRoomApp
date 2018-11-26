@@ -11,7 +11,7 @@ class BookingManage extends Component {
     render() {
         const { booking } = this.props;
         return (
-            <div className="row">
+            <div>
                 { booking.data.map((booking,index) => <p key={index} >{booking.startAt} - {booking.endAt} </p>) }
             </div>
         )

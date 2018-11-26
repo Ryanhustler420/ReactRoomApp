@@ -123,6 +123,16 @@ export const fetchUserBookings = () => {
     }
 }
 
+// USER RENTAL ACTION's aka manage section
+
+export const getUserRentals = () => {
+    return axiosInstance.get('/rentals/manage')
+    .then(
+        response => response.data,
+        err => Promise.reject(err.response.data.errors)
+    )
+}
+
 // AUTH ACTIONS
 
 export const register = (userData) => {
