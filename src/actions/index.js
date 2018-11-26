@@ -3,7 +3,10 @@ import authService from '../services/auth-service';
 import AxiosService from '../services/axios-service';
 
 import { 
-    FETCH_RENTAL_BY_ID_SUCCESS, 
+    FETCH_RENTAL_BY_ID_SUCCESS,
+    FETCH_USER_BOOKINGS_INIT,
+    FETCH_USER_BOOKINGS_SUCCESS,
+    FETCH_USER_BOOKINGS_FAIL, 
     FETCH_RENTAL_BY_ID_INIT,
     FETCH_RENTAL_SUCCESS,
     FETCH_RENTAL_INIT,
@@ -86,6 +89,38 @@ export const createRental = (rental) => {
         res => res.data,
         err => Promise.reject(err.response.data.errors)
     )
+}
+// USER BOOKING ACTION's aka Manage Section
+
+// clear state before fetch data from API
+const fetchBookingUserInit = () => {
+    return {
+        type: FETCH_USER_BOOKINGS_INIT
+    }
+}
+
+const fetchUserBookingsSuccess = (booking) => {
+    return {
+        type: FETCH_USER_BOOKINGS_SUCCESS,
+        booking
+    }
+}
+
+const fetchUserBookingFail = (errors) => {
+    return {
+        type: FETCH_USER_BOOKINGS_FAIL,
+        errors
+    }
+}
+
+export const fetchUserBookings = () => {
+    return dispatch => {
+        dispatch(fetchBookingUserInit());
+        return axiosInstance.get('/bookings/manage')
+        .then(response => response.data)
+        .then(booking =>  dispatch(fetchUserBookingsSuccess(booking)))
+        .catch(({response}) => dispatch(fetchUserBookingFail(response.data.errors)));
+    }
 }
 
 // AUTH ACTIONS

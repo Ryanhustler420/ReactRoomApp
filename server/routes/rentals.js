@@ -27,7 +27,7 @@ router.get('',(req,res) => {
 router.get('/manage', UserCtrl.authMiddleware, (req, res) => {
     const user = res.locals.user;
     Rental.where({user})
-        .populate('rentals')
+        .populate('bookings')
         .exec((err, foundRentals) => {
             if(err){
                 return res.status(422).send({errors: normalizeErrors(error.errors)})

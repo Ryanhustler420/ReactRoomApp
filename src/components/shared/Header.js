@@ -38,7 +38,7 @@ class Header extends Component {
                     <div className='dropdown-menu' aria-labelledby='navbarDropdownMenuLink'>
                         <Link className='dropdown-item' to='/rentals/new'>Create Rental</Link>
                         <Link className='dropdown-item' to='/rentals/manage'>Manage Rental</Link>
-                        <Link className='dropdown-item' to='/bookings/manage'>Create Bookings</Link>
+                        <Link className='dropdown-item' to='/bookings/manage'>Manage Bookings</Link>
                     </div>
                 </div>
             )
