@@ -6,5 +6,6 @@ const UserRouteFunc = require('../controllers/userRouteFunction');
 const BookingCtrl = require('../controllers/bookingRouteFunction');
 
 router.post('', UserRouteFunc.authMiddleware, BookingCtrl.createBooking);
+router.get('/manage', UserRouteFunc.authMiddleware, BookingCtrl.getUserBookings);
 
 module.exports = router;

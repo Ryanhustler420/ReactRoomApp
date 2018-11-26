@@ -24,6 +24,18 @@ router.get('',(req,res) => {
         })
 });
 
+router.get('/manage', UserCtrl.authMiddleware, (req, res) => {
+    const user = res.locals.user;
+    Rental.where({user})
+        .populate('rentals')
+        .exec((err, foundRentals) => {
+            if(err){
+                return res.status(422).send({errors: normalizeErrors(error.errors)})
+            }
+            return res.json(foundRentals);
+        });
+})
+
 router.get('/:id', (req,res) => {
     const rentalId = req.params.id;
 

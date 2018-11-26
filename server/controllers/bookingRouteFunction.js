@@ -120,3 +120,26 @@ function isValidBooking(DemandBookingObject, FoundRentalsBookingList) {
     }
     return isValid;
 }
+
+/**
+ * @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @
+ * 
+ *  Manage Routes
+ * 
+ * @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @ @
+ * 
+ */
+
+exports.getUserBookings = function(req, res){
+    const user = res.locals.user;
+    
+    Booking.where({user})
+        .populate('rentals')
+        .exec(function(error, foundRentals){
+            if(error){
+                return res.status(422).send(createErrorObject('something wrong!',error.error));
+            }
+        
+            return res.json(foundRentals);
+        });
+}
