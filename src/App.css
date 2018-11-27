@@ -126,6 +126,44 @@
     margin-bottom: 15px;
     font-weight: 300; }
 
+#userRentals .card {
+  margin: 14px 0; }
+
+#userRentals .card-block {
+  padding: 20px; }
+
+#userRentals .card-title {
+  font-size: 20px; }
+
+#userRentals .btn-bwm {
+  font-size: 14px;
+  color: white;
+  padding: 10px 15px; }
+
+#userRentals .card-footer {
+  font-size: 14px; }
+
+#userRentals .btn-bookings {
+  border-color: #61dafb;
+  background-color: transparent;
+  color: #61dafb; }
+  #userRentals .btn-bookings:hover, #userRentals .btn-bookings:focus {
+    border-color: #61dafb !important;
+    background-color: transparent !important;
+    color: #61dafb !important; }
+
+#userRentals .btn-bwm {
+  margin-left: 10px; }
+
+.rental-booking-modal .btn-bwm {
+  font-size: 14px;
+  color: white;
+  padding: 10px 15px; }
+
+.rental-booking-modal .bookings-inner-container p {
+  font-size: 14px;
+  margin-left: 0px; }
+
 .booking {
   padding: 20px;
   border: 1px solid #dedada; }
