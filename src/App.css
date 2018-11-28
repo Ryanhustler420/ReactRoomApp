@@ -78,7 +78,8 @@
   #rentalListing .rental-detail-link:hover, #rentalListing .rental-detail-link:active {
     text-decoration: none; }
   #rentalListing .bwm-card {
-    border: none; }
+    border: none;
+    margin-bottom: 20px; }
     #rentalListing .bwm-card .card-block {
       padding-top: 8px; }
       #rentalListing .bwm-card .card-block .card-subtitle {
