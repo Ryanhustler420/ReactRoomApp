@@ -2475,3 +2475,6 @@ node index.js
 ```
 
 > go to localhost:3001
+
+> Login to heroku for push
+> create new mlab database for production & create user
