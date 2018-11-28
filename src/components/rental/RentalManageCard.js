@@ -1,5 +1,6 @@
 import  React  from 'react';
 import { Link } from 'react-router-dom';
+import { pretifyDate } from './../../helpers/index';
 
 export class RentalManageCard extends React.Component {
 
@@ -25,7 +26,7 @@ export class RentalManageCard extends React.Component {
 
     render() {
 
-        const { rental, modal } = this.props;
+        const { rental, modal, callback, rentalIndex } = this.props;
         const { wantDelete } = this.state;
 
         const deleteClass = wantDelete ? 'toBeDeleted' : '';
@@ -41,7 +42,7 @@ export class RentalManageCard extends React.Component {
                     <div className='card-footer text-muted'>
                         {
                             !wantDelete && 
-                            <p>Created at {rental.createdAt}</p>
+                            <p>Created at {pretifyDate(rental.createdAt)}</p>
                         }
                         {   !wantDelete && 
                             <button onClick={() => {this.showDeleteMenu()}} className='btn btn-danger'> Delete </button>
@@ -50,7 +51,7 @@ export class RentalManageCard extends React.Component {
                             wantDelete && 
                             <React.Fragment>
                                 Do you confirm?
-                                <button className='btn btn-danger'> Yes </button>
+                                <button className='btn btn-danger' onClick={() => {callback(rental._id, rentalIndex); this.closeDeleteMenu() }}> Yes </button>
                                 <button className='btn btn-success' onClick={() => {this.closeDeleteMenu()}}> No </button>
                             </React.Fragment>
                         }

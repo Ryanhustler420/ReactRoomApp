@@ -133,6 +133,15 @@ export const getUserRentals = () => {
     )
 }
 
+// DELETE RENTAL ACTION's aka manage section
+
+export const deleteRental = (RentalId) => {
+    return axiosInstance.delete(`/rentals/${RentalId}`).then(
+        (success) => success.data,
+        (error) => Promise.reject(error.response.data.errors)
+    )
+}
+
 // AUTH ACTIONS
 
 export const register = (userData) => {

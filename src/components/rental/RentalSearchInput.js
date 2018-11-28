@@ -33,7 +33,8 @@ class RentalSearchInput extends Component {
                     placeholder="Try 'New York'" 
                     aria-label='Search'></input>
                 <button onClick={() => {this.handleSearch()}}
-                        className='btn btn-outline-success my-2 my-sm-0 btn-bwm-search' 
+                        className='btn btn-outline-success my-2 my-sm-0 btn-bwm-search'
+                        style={{'marginLeft':'3px'}}
                         type='submit'>Search</button>
             </div>
         )
