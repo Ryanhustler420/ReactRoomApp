@@ -21,6 +21,9 @@ class RentalListing extends Component {
                         : 
                             "Loading.."
                     }
+                    <div class="footer">
+                        <p>Build by GauravGupta</p>
+                    </div>
                 </section>
             </div>
         )
