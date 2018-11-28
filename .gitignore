@@ -23,3 +23,5 @@ yarn-error.log*
 ## Ignore all .css file
 /src/**/*.css
 /server/config/dev.js 
+
+yarn.lock
