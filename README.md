@@ -2467,3 +2467,11 @@ module.exports = {
 - npm i moment --save
 - npm install react-responsive-modal@3.0.3 --save
 - npm install --save react-toastify@4.0.0-rc.4
+
+> run node server of
+
+```
+node index.js
+```
+
+> go to localhost:3001
