@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import * as actions from '../../actions';
 import { Link } from 'react-router-dom';
 import RentalManageCard from './RentalManageCard';
+import RentalManageModal from './RentalManageModal';
 
 export default class RentalManage extends Component {
 
@@ -24,7 +25,7 @@ export default class RentalManage extends Component {
     }
 
     renderData(userRental) {
-        return userRental.map((rental, index) => <RentalManageCard key={index} rental={rental} />)
+        return userRental.map((rental, index) => <RentalManageCard modal={<RentalManageModal bookings={rental.bookings} />} key={index} rental={rental} />)
     }
 
     renderError(isFetching, userRental) {

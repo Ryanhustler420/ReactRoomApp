@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Modal  from 'react-responsive-modal';
+import { pretifyDate } from './../../helpers/index';
 
 export default class RentalManageModal extends Component {
 
@@ -28,7 +29,7 @@ export default class RentalManageModal extends Component {
         return bookings.map((booking, index) => {
             return (
                 <React.Fragment key={index}>
-                    <p><span>Date:</span> {booking.startAt} - {booking.endAt}</p>
+                    <p><span>Date:</span> {pretifyDate(booking.startAt)} - {pretifyDate(booking.endAt)}</p>
                     <p><span>Guests:</span> {booking.guests}</p>
                     <p><span>Total Price:</span> {booking.totalPrice} $</p>
                     {
