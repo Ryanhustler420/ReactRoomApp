@@ -27,7 +27,7 @@ router.get('',(req,res) => {
 router.get('/manage', UserCtrl.authMiddleware, (req, res) => {
     const user = res.locals.user;
     Rental.where({user})
-        .populate('rentals')
+        .populate('bookings')
         .exec((err, foundRentals) => {
             if(err){
                 return res.status(422).send({errors: normalizeErrors(error.errors)})
@@ -79,7 +79,6 @@ router.delete('/:id', UserCtrl.authMiddleware, (req, res) => {
         if(error)
             return res.status(422).send({errors: normalizeErrors(error.errors)});
 
-        console.log(foundRental);
         if(user.id !== foundRental.user.id)
             return res.status(422).send(createErrorObject('Invalid User!','You are not rental Owner'));
 

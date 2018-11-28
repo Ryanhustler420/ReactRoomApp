@@ -28,6 +28,16 @@
     .navbar .dropdown-menu .dropdown-item:active {
       background-color: #61dafb; }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #20232a;
+  height: 25px;
+  color: white;
+  text-align: center; }
+
 .bwm-form {
   color: #454545; }
   .bwm-form h1 {
@@ -98,6 +108,17 @@
     font-weight: 300;
     text-transform: uppercase;
     margin: 0; }
+  #rentalDetails .details-section .rental-owner {
+    float: right; }
+    #rentalDetails .details-section .rental-owner img {
+      height: 50px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto; }
+    #rentalDetails .details-section .rental-owner span {
+      display: block;
+      font-size: 13px;
+      font-weight: 3000; }
   #rentalDetails .details-section .rental-title {
     margin-bottom: 5px;
     font-size: 32px;
@@ -126,9 +147,56 @@
     margin-bottom: 15px;
     font-weight: 300; }
 
+#userRentals .toBeDeleted {
+  border-color: red; }
+
+#userRentals .card {
+  margin: 14px 0; }
+
+#userRentals .card-block {
+  padding: 20px; }
+
+#userRentals .card-title {
+  font-size: 20px; }
+
+#userRentals .btn-bwm {
+  font-size: 14px;
+  color: white;
+  padding: 10px 15px; }
+
+#userRentals .card-footer {
+  font-size: 14px; }
+
+#userRentals .btn-bookings {
+  border-color: #61dafb;
+  background-color: transparent;
+  color: #61dafb; }
+  #userRentals .btn-bookings:hover, #userRentals .btn-bookings:focus {
+    border-color: #61dafb !important;
+    background-color: transparent !important;
+    color: #61dafb !important; }
+
+#userRentals .btn-danger, #userRentals .btn-success {
+  margin-left: 10px;
+  font-size: 14px; }
+
+#userRentals .btn-bwm {
+  margin-left: 10px; }
+
+.rental-booking-modal .btn-bwm {
+  font-size: 14px;
+  color: white;
+  padding: 10px 15px; }
+
+.rental-booking-modal .bookings-inner-container p {
+  font-size: 14px;
+  margin-left: 0px; }
+
 .booking {
   padding: 20px;
   border: 1px solid #dedada; }
+  .booking a:hover {
+    color: white; }
   .booking .btn-confirm {
     font-size: 17px;
     font-weight: 700;
@@ -181,6 +249,34 @@
 .daterangepicker td.active {
   background-color: #61dafb !important; }
 
+#userBookings .card {
+  margin-bottom: 20px; }
+
+#userBookings h1 {
+  margin-bottom: 20px; }
+
+#userBookings .card-block {
+  text-transform: capitalize;
+  margin: 10px 0px; }
+
+#userBookings .card-title {
+  font-size: 18px; }
+
+#userBookings .booking-desc {
+  font-size: 14px; }
+
+#userBookings .booking-days {
+  font-size: 14px;
+  font-weight: bold; }
+
+#userBookings .booking-price-value {
+  font-weight: 700; }
+
+#userBookings .btn-bwm {
+  color: white;
+  font-size: 14px;
+  padding: 15px; }
+
 .page-title {
   font-size: 30px;
   font-weight: 700;
@@ -204,6 +300,7 @@
   color: white;
   padding: 15px 30px;
   font-size: 20px;
+  margin: 10px 0;
   cursor: pointer; }
   .btn-bwm:hover, .btn-bwm:focus, .btn-bwm:active {
     border-color: #61dafb !important;

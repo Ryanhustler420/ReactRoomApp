@@ -1,12 +1,15 @@
 @import 'variables.scss';
 @import './header/header.scss';
+@import './footer/footer.scss';
 
 @import './form/form.scss';
 
 @import './rental/rental-listing.scss';
 @import './rental/rental-detail.scss';
+@import './rental/rental-manage';
 
 @import './booking/booking.scss';
+@import './booking/user-bookings';
 
 .page-title {
     font-size: 30px;
@@ -38,6 +41,7 @@
     color: white;
     padding: 15px 30px;
     font-size: 20px;
+    margin: 10px 0;
     cursor: pointer;
 
     &:hover, &:focus, &:active {

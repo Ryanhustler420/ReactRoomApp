@@ -134,7 +134,7 @@ exports.getUserBookings = function(req, res){
     const user = res.locals.user;
     
     Booking.where({user})
-        .populate('rentals')
+        .populate('rental')
         .exec(function(error, foundRentals){
             if(error){
                 return res.status(422).send(createErrorObject('something wrong!',error.error));

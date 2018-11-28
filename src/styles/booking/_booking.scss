@@ -2,6 +2,10 @@
     padding: 20px;
     border: 1px solid $light-grey-color-2;
 
+    a:hover {
+        color: white;
+    }
+
     .btn-confirm {
         font-size: 17px;
         font-weight: 700;
