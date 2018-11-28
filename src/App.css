@@ -98,6 +98,17 @@
     font-weight: 300;
     text-transform: uppercase;
     margin: 0; }
+  #rentalDetails .details-section .rental-owner {
+    float: right; }
+    #rentalDetails .details-section .rental-owner img {
+      height: 50px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto; }
+    #rentalDetails .details-section .rental-owner span {
+      display: block;
+      font-size: 13px;
+      font-weight: 3000; }
   #rentalDetails .details-section .rental-title {
     margin-bottom: 5px;
     font-size: 32px;
@@ -174,6 +185,8 @@
 .booking {
   padding: 20px;
   border: 1px solid #dedada; }
+  .booking a:hover {
+    color: white; }
   .booking .btn-confirm {
     font-size: 17px;
     font-weight: 700;

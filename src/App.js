@@ -47,7 +47,7 @@ class App extends Component {
                 <ProtectedRoute path='/rentals/manage' component={RentalManage}/>
                 <ProtectedRoute path='/bookings/manage' component={BookingManage}/>
                 <ProtectedRoute exact path='/rentals/new' component={RentalCreate}/>
-                <ProtectedRoute exact path='/rentals/:id' component={RentalDetail}/>
+                <Route exact path='/rentals/:id' component={RentalDetail}/>
               </Switch>
 
               <LoggedInRoute exact path='/login' component={Login}/>
