@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('./config/dev');
+const config = require('./config');
 const Rental = require('./models/rental');
 const FakeDb = require('./fake-db');
 
