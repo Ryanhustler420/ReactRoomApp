@@ -28,7 +28,6 @@ export default class RentalManage extends Component {
     }
 
     renderError(isFetching, userRental) {
-        console.log('trigger');
         return (
             !isFetching && userRental.length === 0 &&
             <div className='alert alert-warning'>

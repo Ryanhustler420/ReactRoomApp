@@ -1,5 +1,6 @@
 import  React  from 'react';
 import { Link } from 'react-router-dom';
+import RentalManageModal from './RentalManageModal';
 
 const RentalManageCard = (props) => {
 
@@ -11,7 +12,10 @@ const RentalManageCard = (props) => {
                 <div className='card-block'>
                     <h4 className='card-title'>{rental.title} - {rental.city}</h4>
                     <Link className='btn btn-bwm' to={`/rentals/${rental._id}`}>Go to Rental</Link>
-                    <button className='btn btn-bwm'> Bookings </button>
+                    {
+                        rental.bookings && rental.bookings.length > 0 &&
+                        <RentalManageModal bookings={rental.bookings}/>
+                    }
                 </div>
                 <div className='card-footer text-muted'>
                     Created at {rental.createdAt}
