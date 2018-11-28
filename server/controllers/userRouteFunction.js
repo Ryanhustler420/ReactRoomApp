@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const { normalizeErrors } = require('../helper/errorParser');
 const jwt = require('jsonwebtoken');
-const config = require('../config/dev');
+const config = require('../config');
 
 exports.auth = function(req, res) {
     // we are expecting email and password from user
