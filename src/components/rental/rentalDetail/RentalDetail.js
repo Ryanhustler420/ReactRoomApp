@@ -6,6 +6,7 @@ import RentalMap from './RentalMap';
 
 import * as actions from '../../../actions';
 import Booking from './../../booking/Booking';
+import { RentalDetailUpdate } from './RentalDetailParts/RentalDetailUpdate';
 
 class RentalDetail extends Component {
 
@@ -13,6 +14,13 @@ class RentalDetail extends Component {
         // Dispatch action
         const RentalId = this.props.match.params.id;
         this.props.dispatch(actions.fetchRentalById(RentalId));
+    }
+
+    renderRentalDetail(rental) {
+        const { isUpdate } = this.props.location.state || false;
+
+        return isUpdate ? <RentalDetailUpdate rental={rental}/>
+                        : <RentalDetailInfo rental={rental}/>
     }
 
     render() {
@@ -34,7 +42,7 @@ class RentalDetail extends Component {
                     <div className='details-section'>
                         <div className='row'>
                             <div className='col-md-8'>
-                                <RentalDetailInfo rental={rental}/>
+                                {  this.renderRentalDetail(rental)    }                                
                             </div>
                             <div className='col-md-4'>
                                 <Booking rental={rental}/>

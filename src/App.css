@@ -181,6 +181,11 @@
   margin-left: 10px;
   font-size: 14px; }
 
+#userRentals .btn-warning {
+  font-size: 14px;
+  color: white;
+  margin-left: 10px; }
+
 #userRentals .btn-bwm {
   margin-left: 10px; }
 
