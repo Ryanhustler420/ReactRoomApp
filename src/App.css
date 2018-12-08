@@ -198,6 +198,10 @@
   font-size: 14px;
   margin-left: 0px; }
 
+#editableComponent .btn-editable {
+  margin-left: 10px;
+  font-size: 12px; }
+
 .booking {
   padding: 20px;
   border: 1px solid #dedada; }
