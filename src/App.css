@@ -128,10 +128,16 @@
     font-size: 14px;
     font-weight: 300;
     margin-bottom: 20px; }
+  #rentalDetails .details-section .rental-street {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 20px; }
   #rentalDetails .details-section .rental-room-info {
     margin-bottom: 20px;
     font-weight: 300;
     font-size: 16px; }
+    #rentalDetails .details-section .rental-room-info .rental-bedrooms {
+      margin-right: 0; }
     #rentalDetails .details-section .rental-room-info span {
       margin-right: 10px; }
     #rentalDetails .details-section .rental-room-info i {
@@ -200,7 +206,7 @@
 
 #editableComponent .btn-editable {
   margin-left: 10px;
-  font-size: 12px; }
+  font-size: 8px; }
 
 .booking {
   padding: 20px;

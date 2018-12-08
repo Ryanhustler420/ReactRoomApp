@@ -46,10 +46,20 @@
                 margin-bottom: 20px;
             }
 
+            &-street {
+                font-size: 14px;
+                font-weight: 300;
+                margin-bottom: 20px;
+            }
+
             &-room-info {
                 margin-bottom: 20px;
                 font-weight: 300;
                 font-size: 16px;
+
+                .rental-bedrooms {
+                    margin-right: 0;
+                }
 
                 span {
                     margin-right: 10px;

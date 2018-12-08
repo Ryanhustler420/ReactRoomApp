@@ -85,7 +85,7 @@ export class EditableInput extends React.Component {
         const { value } = this.state;
 
         return (
-            <div id='editableComponent'>
+            <div id='editableComponent' style={this.props.containerStyle}>
             {this.renderComponentView()}
             </div>
         )
