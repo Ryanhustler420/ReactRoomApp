@@ -39,11 +39,11 @@ export class EditableInput extends React.Component {
     update() {
 
         const { value, originValue} = this.state;
-        const { updateEntity, entityField } = this.props;
+        const { entity: rental, updateEntity, entityField } = this.props;
         if(value !== originValue){
             updateEntity({
                 [entityField]: value
-            });
+            }, rental._id);
             this.setState({
                 isActive: false,
                 originValue: value

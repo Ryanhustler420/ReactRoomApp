@@ -64,6 +64,31 @@ router.post('', UserCtrl.authMiddleware, (req, res) => {
     })
 });
 
+router.patch('/:id', UserCtrl.authMiddleware, (req, res) => {
+    const rentalData = req.body;
+    const user = res.locals.user;
+
+    Rental
+        .findById(req.params.id)
+        .populate('user')
+        .exec((error, foundRental) => {
+        
+            if(error)
+                return res.status(422).send({errors: normalizeErrors(error.errors)});
+
+            if(user.id !== foundRental.user.id)
+                return res.status(422).send(createErrorObject('Invalid User!','You are not rental Owner'));
+
+            foundRental.set(rentalData);
+            foundRental.save((err) => {
+                if(error)
+                    return res.status(422).send({errors: normalizeErrors(error.errors)});
+
+                return res.status(200).send(foundRental);
+        });
+    });
+});
+
 router.delete('/:id', UserCtrl.authMiddleware, (req, res) => {
     const user = res.locals.user;
 

@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { RentalAssets } from './RentalAssets';
 import { toUpperCase, rentalType } from '../../../../helpers';
 import { EditableInput } from './../../../shared/editable/EditableInput';
+import * as actions from './../../../../actions';
+import { connect } from 'react-redux';
 
-export class RentalDetailUpdate extends Component {
+class RentalDetailUpdate extends Component {
 
     constructor() {
         super();
@@ -11,9 +13,8 @@ export class RentalDetailUpdate extends Component {
         this.updateRental = this.updateRental.bind(this);
     }
 
-    updateRental(rentalData) {
-        // make call to actions later...
-        console.log('update request sent...',rentalData);
+    updateRental(rentalData, rentalId) {
+        this.props.dispatch(actions.updateRental(rentalData, rentalId));
     }
 
     render () {
@@ -49,3 +50,5 @@ export class RentalDetailUpdate extends Component {
         )
     }
 }
+
+export default connect()(RentalDetailUpdate);

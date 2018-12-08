@@ -6,7 +6,9 @@ import {
     FETCH_RENTAL_BY_ID_SUCCESS,
     FETCH_USER_BOOKINGS_INIT,
     FETCH_USER_BOOKINGS_SUCCESS,
-    FETCH_USER_BOOKINGS_FAIL, 
+    FETCH_USER_BOOKINGS_FAIL,
+    UPDATE_RENTAL_SUCCESS,
+    UPDATE_RENTAL_FAIL,
     FETCH_RENTAL_BY_ID_INIT,
     FETCH_RENTAL_SUCCESS,
     FETCH_RENTAL_INIT,
@@ -90,6 +92,30 @@ export const createRental = (rental) => {
         err => Promise.reject(err.response.data.errors)
     )
 }
+
+// Update Rental Action's
+
+const updateRentalSuccess = (Rental) => {
+    return {
+        type: UPDATE_RENTAL_SUCCESS,
+        Rental
+    }
+}
+
+const updateRentalFail = (errors) => {
+    return {
+        type: UPDATE_RENTAL_FAIL,
+        errors
+    }
+}
+
+export const updateRental = (updatedRental,rentalId) => dispatch => {
+        return axiosInstance.patch(`/rentals/${rentalId}`,updatedRental)
+            .then(response => response.data)
+            .then(rental =>  dispatch(updateRentalSuccess(rental)))
+            .catch(({response}) => dispatch(updateRentalFail(response.data.errors)));
+}
+
 // USER BOOKING ACTION's aka Manage Section
 
 // clear state before fetch data from API

@@ -6,7 +6,7 @@ import RentalMap from './RentalMap';
 
 import * as actions from '../../../actions';
 import Booking from './../../booking/Booking';
-import { RentalDetailUpdate } from './RentalDetailParts/RentalDetailUpdate';
+import RentalDetailUpdate from './RentalDetailParts/RentalDetailUpdate';
 
 class RentalDetail extends Component {
 
