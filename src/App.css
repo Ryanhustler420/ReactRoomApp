@@ -120,6 +120,8 @@
       display: block;
       font-size: 13px;
       font-weight: 3000; }
+  #rentalDetails .details-section .rental-label {
+    margin-right: 10px; }
   #rentalDetails .details-section .rental-title {
     margin-bottom: 5px;
     font-size: 32px;
