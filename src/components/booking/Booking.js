@@ -96,8 +96,8 @@ class Booking extends Component {
         this.setState({
             proposedBooking:{
                 ...this.state.proposedBooking,
-                days,
-                totalPrice: days * rental.dailyRate,
+                days: days === 0 ? 1 : days,
+                totalPrice: (days * rental.dailyRate) === 0 ? rental.dailyRate : (days * rental.dailyRate),
                 rental
             },
             modal: {

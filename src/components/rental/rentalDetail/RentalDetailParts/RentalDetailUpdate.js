@@ -4,6 +4,7 @@ import { toUpperCase, rentalType } from '../../../../helpers';
 import { EditableInput } from './../../../shared/editable/EditableInput';
 import * as actions from './../../../../actions';
 import { connect } from 'react-redux';
+import { EditableText } from './../../../shared/editable/EditableText';
 
 class RentalDetailUpdate extends Component {
 
@@ -60,9 +61,13 @@ class RentalDetailUpdate extends Component {
                         <span><i className='fa fa-user'></i>{rental.bedrooms + 4} guests</span>
                         <span><i className='fa fa-bed'></i>{rental.bedrooms + 2} beds</span>
                     </div>
-                <p className='rental-description'>
-                    {rental.description}
-                </p>
+                <EditableText
+                    entity={rental} 
+                    entityField={'description'} 
+                    className={'rental-description'}
+                    updateEntity={this.updateRental}
+                    rows={6} cols={50}
+                />
                 <hr></hr>
                     <RentalAssets/>
             </div>
