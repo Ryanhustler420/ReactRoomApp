@@ -1,4 +1,5 @@
 import React from 'react';
+import { toast } from 'react-toastify';
 
 export class EditableComponent extends React.Component {
 
@@ -13,12 +14,25 @@ export class EditableComponent extends React.Component {
     }
 
     componentDidMount() {
-        const { entity, entityField } = this.props;
-        const value = entity[entityField];
+        this.setOriginalValue();
+    }
 
+    componentDidUpdate() {
+        const { errors, entityField, resetErrorsFunc } = this.props;
+
+        if(errors && errors.length > 0 && errors[0].title === entityField){
+            this.setOriginalValue();
+            toast.error(`${errors[0].detail}`);
+            resetErrorsFunc();
+        }
+    }
+
+    setOriginalValue() {
+        const {entity, entityField} = this.props;
         this.setState({
-            value,
-            originValue: value
+            value: entity[entityField],
+            originValue: entity[entityField],
+            isActive: false
         });
     }
 
@@ -41,13 +55,18 @@ export class EditableComponent extends React.Component {
         const { value, originValue} = this.state;
         const { entity: rental, updateEntity, entityField } = this.props;
         if(value !== originValue){
-            updateEntity({
-                [entityField]: value
-            }, rental._id);
-            this.setState({
-                isActive: false,
-                originValue: value
-            })
+            if(value.trim() === ''){
+                toast.error(`Field Cannot Be Empty!!!`);
+                this.setState({value: originValue});
+            } else {
+                updateEntity({
+                    [entityField]: value
+                }, rental._id);
+                this.setState({
+                    isActive: false,
+                    originValue: value
+                })
+            }
         }
     }
 }

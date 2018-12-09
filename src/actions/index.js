@@ -11,6 +11,7 @@ import {
     UPDATE_RENTAL_FAIL,
     FETCH_RENTAL_BY_ID_INIT,
     FETCH_RENTAL_SUCCESS,
+    RESET_RENTAL_ERRORS,
     FETCH_RENTAL_INIT,
     FETCH_RENTAL_FAIL,
     LOGIN_SUCCESS,
@@ -94,6 +95,12 @@ export const createRental = (rental) => {
 }
 
 // Update Rental Action's
+
+export const resetRentalErrors = () => {
+    return {
+        type: RESET_RENTAL_ERRORS
+    }
+}
 
 const updateRentalSuccess = (Rental) => {
     return {

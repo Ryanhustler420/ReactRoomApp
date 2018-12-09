@@ -42,7 +42,6 @@ export class EditableSelect extends EditableComponent {
 
     render() {
 
-        const { value } = this.state;
 
         return (
             <div className='editableComponent' style={this.props.containerStyle}>
