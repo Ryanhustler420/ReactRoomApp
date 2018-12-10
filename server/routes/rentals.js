@@ -50,6 +50,24 @@ router.get('/:id', (req,res) => {
     });
 });
 
+router.get('/:id/verify-user', UserCtrl.authMiddleware, (req,res) => {
+    const user = res.locals.user;
+
+    Rental
+        .findById(req.params.id)
+        .populate('user')
+        .exec((error, foundRental) => {
+            if(error)
+                return res.status(422).send({errors: normalizeErrors(error.errors)});
+
+            if(foundRental.user.id !== user.id)
+                return res.status(422).send(createErrorObject('Invalid User!','You are not rental Owner'));
+
+            return res.json({status:'verified'});
+        });
+
+});
+
 router.post('', UserCtrl.authMiddleware, (req, res) => {
     const { title, street, city, category, image, bedrooms, shared, description, dailyRate } = req.body;
     const newRental = new Rental({ title, street, city, category, image, bedrooms, shared, description, dailyRate });
