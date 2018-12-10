@@ -7,6 +7,7 @@ import RentalMap from './RentalMap';
 import * as actions from '../../../actions';
 import Booking from './../../booking/Booking';
 import RentalDetailUpdate from './RentalDetailParts/RentalDetailUpdate';
+import UserGaurd from './../../shared/auth/userGaurd';
 
 class RentalDetail extends Component {
 
@@ -19,7 +20,7 @@ class RentalDetail extends Component {
     renderRentalDetail(rental, errors) {
         const { isUpdate } = this.props.location.state || false;
 
-        return isUpdate ? <RentalDetailUpdate rental={rental} errors={errors}/>
+        return isUpdate ? <UserGaurd component={RentalDetailUpdate} rental={rental} errors={errors}/>
                         : <RentalDetailInfo rental={rental}/>
     }
 
