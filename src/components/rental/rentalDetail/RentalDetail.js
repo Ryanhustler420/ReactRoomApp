@@ -13,7 +13,10 @@ class RentalDetail extends Component {
 
     constructor() {
         super();
-
+        this.state = {
+            isAllowed: false,
+            isFetching: true
+        }
         this.verifyRentalOwner = this.verifyRentalOwner.bind(this);
     }
 
@@ -23,14 +26,30 @@ class RentalDetail extends Component {
         this.props.dispatch(actions.fetchRentalById(RentalId));
     }
 
+    componentDidMount() {
+
+        const { isUpdate } = this.props.location.state || false;
+        if(isUpdate) this.verifyRentalOwner();
+    }
+
     verifyRentalOwner() {
-        return actions.verifyRentalOwner(this.props.rental._id);
+        const RentalId = this.props.match.params.id;
+        this.setState({isFetching: true});
+
+        return actions.verifyRentalOwner(RentalId).then(
+            () => {
+                this.setState({isAllowed: true, isFetching: false});
+            },
+            () => {
+                this.setState({isAllowed: false, isFetching: false});
+            });
     }
 
     renderRentalDetail(rental, errors) {
         const { isUpdate } = this.props.location.state || false;
+        const { isAllowed, isFetching } = this.state;
 
-        return isUpdate ? <UserGaurd component={RentalDetailUpdate} rental={rental} errors={errors} verifyUser={this.verifyRentalOwner}/>
+        return isUpdate ? <UserGaurd isAllowed={isAllowed} isFetching={isFetching}><RentalDetailUpdate rental={rental} errors={errors} verifyUser={this.verifyRentalOwner}/></UserGaurd>
                         : <RentalDetailInfo rental={rental}/>
     }
 
