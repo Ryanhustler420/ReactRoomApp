@@ -4,7 +4,7 @@ import { BwmResError } from './../shared/form/bwmResError';
 
 const BookingModal = (props) => {
 
-    const { open, closeModal, booking, confirmModal, errors, rentalPrice } = props;
+    const { open, closeModal, booking, confirmModal, errors, rentalPrice, processing } = props;
 
     return (
         <Modal open={open} onClose={closeModal} little className='booking-modal'>
@@ -19,7 +19,7 @@ const BookingModal = (props) => {
             </div>
             <BwmResError errors={errors} />
             <div className='modal-footer'>
-                <button onClick={confirmModal} type='button' className='btn btn-bwm'>Confirm</button>
+                <button onClick={confirmModal} disabled={processing} type='button' className='btn btn-bwm'>Confirm</button>
                 <button type='button' onClick={closeModal} className='btn btn-bwm'>Cancel</button>
             </div>
         </Modal>

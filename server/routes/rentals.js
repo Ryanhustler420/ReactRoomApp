@@ -127,7 +127,7 @@ router.delete('/:id', UserCtrl.authMiddleware, (req, res) => {
 
         if(foundRental.bookings.length > 0)
             return res.status(422).send(createErrorObject('Active Bookings!','Could not delete rental with active bookings!'));
-    
+        
         foundRental.remove((error) => {
             if(error)
                 return res.status(422).send({errors: normalizeErrors(error.errors)});

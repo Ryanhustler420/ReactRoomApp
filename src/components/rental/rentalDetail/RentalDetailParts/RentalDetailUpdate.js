@@ -6,6 +6,7 @@ import * as actions from './../../../../actions';
 import { connect } from 'react-redux';
 import { EditableText } from './../../../shared/editable/EditableText';
 import { EditableSelect } from './../../../shared/editable/EditableSelect';
+import { ToastContainer } from 'react-toastify';
 
 class RentalDetailUpdate extends Component {
 
@@ -28,6 +29,7 @@ class RentalDetailUpdate extends Component {
         const { rental, errors} = this.props;
         return (
             <div className='rental'>
+                <ToastContainer />
                 <label className={`rental-label rental-type ${rental.category}`}> Shared </label>
                 <EditableSelect 
                     entity={rental} 

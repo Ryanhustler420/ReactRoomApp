@@ -130,6 +130,11 @@ export const updateRental = (updatedRental,rentalId) => dispatch => {
             .catch(({response}) => dispatch(updateRentalFail(response.data.errors)));
 }
 
+export const verifyRentalOwner = (rentalId) => {
+    return axiosInstance.get(`/rentals/${rentalId}/verify-user`);
+}
+
+
 // Update Rental Map Action's
 
 export const reloadMap = () => {

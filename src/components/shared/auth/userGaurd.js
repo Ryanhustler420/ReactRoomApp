@@ -15,11 +15,13 @@ export default class UserGaurd extends Component {
     componentDidMount() {
         this.setState({isFetching: true});
 
-        // FAKE REQUEST
-
-        window.setTimeout(() => {
+        this.props.verifyUser().then(
+        () => {
+            this.setState({isAllowed: true, isFetching: false});
+        },
+        () => {
             this.setState({isAllowed: false, isFetching: false});
-        }, 2000);
+        })
     }
 
     render() {

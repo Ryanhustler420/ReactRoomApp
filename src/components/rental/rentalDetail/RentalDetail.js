@@ -11,16 +11,26 @@ import UserGaurd from './../../shared/auth/userGaurd';
 
 class RentalDetail extends Component {
 
+    constructor() {
+        super();
+
+        this.verifyRentalOwner = this.verifyRentalOwner.bind(this);
+    }
+
     componentWillMount() {
         // Dispatch action
         const RentalId = this.props.match.params.id;
         this.props.dispatch(actions.fetchRentalById(RentalId));
     }
 
+    verifyRentalOwner() {
+        return actions.verifyRentalOwner(this.props.rental._id);
+    }
+
     renderRentalDetail(rental, errors) {
         const { isUpdate } = this.props.location.state || false;
 
-        return isUpdate ? <UserGaurd component={RentalDetailUpdate} rental={rental} errors={errors}/>
+        return isUpdate ? <UserGaurd component={RentalDetailUpdate} rental={rental} errors={errors} verifyUser={this.verifyRentalOwner}/>
                         : <RentalDetailInfo rental={rental}/>
     }
 

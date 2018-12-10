@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import DateRangePicker from 'react-bootstrap-daterangepicker';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { getRangeOfDates } from './../../helpers/index';
 import * as moment from 'moment';
 import BookingModal from './BookingModal';
@@ -102,11 +102,13 @@ class Booking extends Component {
             },
             modal: {
                 open: true
-            }
+            },
+            processing: false
         })
     }
 
     reserveRental() {
+        this.setState({processing: true});
         actions.createBooking(this.state.proposedBooking).then(
             (booking) => { 
                 this.addNewBookedOutDates(booking);
@@ -139,7 +141,7 @@ class Booking extends Component {
 
         return (
         <div className='booking'>
-            
+            <ToastContainer />
             <h3 className='booking-price'>$ {rental.dailyRate} <span className='booking-per-night'>per night</span></h3>
             <hr/>
             {
@@ -168,7 +170,7 @@ class Booking extends Component {
             <p className='booking-note-text'>
                 More than 500 people checked this rental in last month.
             </p>
-            <BookingModal rentalPrice={rental.dailyRate} errors={this.state.errors} confirmModal={this.reserveRental} booking={this.state.proposedBooking} open={this.state.modal.open} closeModal={this.cancelConfirmation} />
+            <BookingModal rentalPrice={rental.dailyRate} errors={this.state.errors} processing={this.state.processing} confirmModal={this.reserveRental} booking={this.state.proposedBooking} open={this.state.modal.open} closeModal={this.cancelConfirmation} />
         </div>
         )
     }

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import './App.css';
 
-import { ToastContainer } from 'react-toastify';
+
 import Header from './components/shared/Header';
 import RentalListing from './components/rental/rentalListing/rentalListing';
 import RentalDetail from './components/rental/rentalDetail/RentalDetail';
@@ -38,7 +38,7 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className='App'>
-            <ToastContainer/>
+
             <Header logout={this.logout}/>
             <div className="container">
             <Route exact path='/' render={() => <Redirect to='/rentals'/>}/>
