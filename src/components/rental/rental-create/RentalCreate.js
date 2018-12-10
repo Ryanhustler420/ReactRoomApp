@@ -19,7 +19,6 @@ class RentalCreate extends Component {
     }
 
     createRental(rentalData) {
-        console.log(rentalData);
         actions.createRental(rentalData).then(
             (rental) => this.setState({redirect: true}),
             (errors) => this.setState({errors})

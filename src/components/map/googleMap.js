@@ -58,7 +58,6 @@ function withGeocode(WrappedComponent){
         componentDidUpdate() {
             if(this.props.isReloading){
                 this.getGeocodeLocation();
-                console.log(typeof(this.props.isReloading));
             }
         }
 

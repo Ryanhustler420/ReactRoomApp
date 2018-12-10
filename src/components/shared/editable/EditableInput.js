@@ -1,8 +1,21 @@
 import React from 'react';
 import { EditableComponent } from './EditableComponent';
-import { toUpperCase } from './../../../helpers';
 
 export class EditableInput extends EditableComponent {
+
+
+    formatView(value) {
+        const { formatedPipe } = this.props;
+
+        if(formatedPipe){
+            let formatedValue = value;
+
+            formatedPipe.forEach(pipe => formatedValue = pipe(formatedValue));
+            return formatedValue;
+        }
+
+        return value;
+    }
 
     renderComponentView() {
         const { value, isActive } = this.state;
@@ -12,7 +25,7 @@ export class EditableInput extends EditableComponent {
             return (
                 <React.Fragment>
                     <input onChange={(event) => this.handleChange(event)} 
-                            value={toUpperCase(value)} className={className}/>
+                            value={this.formatView(value)} className={className}/>
                     <button type="button" 
                     onClick={() => this.update()} 
                         className='btn btn-success btn-editable'> Save </button>
@@ -25,7 +38,7 @@ export class EditableInput extends EditableComponent {
 
         return (
             <React.Fragment>
-                <span className={className}> {toUpperCase(value)} </span>
+                <span className={className}> {this.formatView(value)} </span>
                 <button type="button" 
                     onClick={() => this.enableEdit()} 
                     className='btn btn-warning btn-editable'> Edit </button>

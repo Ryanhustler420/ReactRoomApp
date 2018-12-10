@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { EditableText } from './../../../shared/editable/EditableText';
 import { EditableSelect } from './../../../shared/editable/EditableSelect';
 import { ToastContainer } from 'react-toastify';
+import { toUpperCase } from './../../../../helpers';
 
 class RentalDetailUpdate extends Component {
 
@@ -70,6 +71,7 @@ class RentalDetailUpdate extends Component {
                     updateEntity={this.updateRental}
                     errors={errors}
                     resetErrorsFunc={this.resetRentalErrors}
+                    formatedPipe={[toUpperCase]}
                     />
                 <EditableInput 
                     entity={rental} 
