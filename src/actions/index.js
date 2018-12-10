@@ -14,6 +14,8 @@ import {
     RESET_RENTAL_ERRORS,
     FETCH_RENTAL_INIT,
     FETCH_RENTAL_FAIL,
+    RELOAD_MAP_FINISH,
+    RELOAD_MAP,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     LOGOUT
@@ -119,8 +121,27 @@ const updateRentalFail = (errors) => {
 export const updateRental = (updatedRental,rentalId) => dispatch => {
         return axiosInstance.patch(`/rentals/${rentalId}`,updatedRental)
             .then(response => response.data)
-            .then(rental =>  dispatch(updateRentalSuccess(rental)))
+            .then(rental =>  {
+                dispatch(updateRentalSuccess(rental));
+                if(updatedRental.city || updatedRental.street){
+                    dispatch(reloadMap());
+                }
+            })
             .catch(({response}) => dispatch(updateRentalFail(response.data.errors)));
+}
+
+// Update Rental Map Action's
+
+export const reloadMap = () => {
+    return {
+        type: RELOAD_MAP
+    }
+}
+
+export const reloadMapFinish = () => {
+    return {
+        type: RELOAD_MAP_FINISH
+    }
 }
 
 // USER BOOKING ACTION's aka Manage Section

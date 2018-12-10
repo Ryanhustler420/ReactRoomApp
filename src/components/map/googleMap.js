@@ -55,7 +55,15 @@ function withGeocode(WrappedComponent){
             this.getGeocodeLocation();
         }
 
+        componentDidUpdate() {
+            if(this.props.isReloading){
+                this.getGeocodeLocation();
+                console.log(typeof(this.props.isReloading));
+            }
+        }
+
         updateCoordinates(coordinates){
+            this.props.reloadFinishedCB();
             this.setState({
                 coordinates,
                 isLocationLoaded:true
@@ -90,6 +98,7 @@ function withGeocode(WrappedComponent){
                 .then((coordinates) => {
                     this.updateCoordinates(coordinates);
                 },(error) => {
+                    this.props.reloadFinishedCB();
                     this.setState({isError: true, isLocationLoaded:true});
                 });
             }
