@@ -5,13 +5,35 @@ export default class BwmFile extends Component {
     constructor() {
         super();
 
+        this.setupReader();
+
+        this.state = {
+            selectedFile : {},
+            imageBase64: ''
+        }
+
         this.onChange = this.onChange.bind(this);
+    }
+
+    setupReader() {
+        this.reader = new FileReader(); //this is pre defined class
+
+        this.reader.addEventListener('load', (event) => {
+            this.setState({imageBase64: event.target.result});
+        });
     }
 
     onChange(event){
         const { input: {onChange} } = this.props;
 
-        onChange('https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg');
+        // onChange('https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg');
+
+        const selectedFile = event.target.files[0];
+
+        if(selectedFile){
+            this.setState({selectedFile});
+            this.reader.readAsDataURL(selectedFile);            
+        }
     }
 
     render() {
