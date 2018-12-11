@@ -215,6 +215,11 @@
   position: relative; }
   .img-upload-container .img-preview-container {
     background-color: #f7f7f7; }
+  .img-upload-container .img-preview {
+    background: center center no-repeat;
+    background-size: contain;
+    height: 116px;
+    width: 116px; }
   .img-upload-container .img-upload {
     margin-right: 20px;
     margin-bottom: 0; }

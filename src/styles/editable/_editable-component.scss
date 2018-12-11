@@ -13,6 +13,13 @@
         background-color: #f7f7f7;
     }
 
+    .img-preview {
+        background: center center no-repeat;
+        background-size: contain;
+        height: 116px;
+        width: 116px;
+    }
+
     .img-upload {
         margin-right: 20px;
         margin-bottom: 0;

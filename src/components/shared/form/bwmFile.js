@@ -62,29 +62,19 @@ export default class BwmFile extends Component {
                             onClick={() => this.uploadImage()}
                             >Upload</button>
                 }
+                {touched &&  
+                    ((error && <div className="alert alert-danger">{error}</div>))
+                }
+
+                {
+                    imageBase64 && 
+                    <div className='img-preview-container'>
+                        <div className='img-preview'
+                            style={{'backgroundImage':`url(${imageBase64})`}}>
+                        </div>
+                    </div>
+                }
             </div>
         )
     }
-
-
-
-    // render() {
-
-    //     const {label, meta: {touched, error} } = this.props;
-
-    //     return (
-    //         <div className="form-group">
-    //             <label>{label}</label>
-    //             <div className="input-group">
-    //                 <input 
-    //                     type='file' 
-    //                     accept='.jpg, .png, .jpeg' 
-    //                     onChange={this.onChange} 
-    //                 />
-    //             </div>
-    //             {touched &&
-    //                 ((error && <div className="alert alert-danger">{error}</div>))}
-    //         </div>
-    //     )
-    // }
 }
