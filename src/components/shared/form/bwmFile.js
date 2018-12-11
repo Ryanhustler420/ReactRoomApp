@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import * as actions from './../../../actions';
 export default class BwmFile extends Component {
 
     constructor() {
@@ -24,9 +24,6 @@ export default class BwmFile extends Component {
     }
 
     onChange(event){
-        // const { input: {onChange} } = this.props;
-
-        // onChange('https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg');
 
         const selectedFile = event.target.files[0];
 
@@ -36,8 +33,24 @@ export default class BwmFile extends Component {
         }
     }
 
-    uploadImage() {
+    onError(error) {
 
+    }
+
+    onSuccess(uploadImage) {
+        const { input: {onChange} } = this.props;
+        onChange(uploadImage);
+    }
+
+    uploadImage() {
+        const { selectedFile } = this.state;
+
+        if(selectedFile){
+            actions.uploadImage(selectedFile).then(
+                (uploadedImage) => { this.onSuccess(uploadedImage) },
+                (error) => { this.onError(error) }
+            )
+        }
     }
 
     render() {
@@ -56,7 +69,7 @@ export default class BwmFile extends Component {
                 </label>
 
                 { selectedFile && 
-                    <button className='btn btn-success img-upload' 
+                    <button className='btn btn-success btn-upload' 
                             type='button' 
                             disabled={!selectedFile}
                             onClick={() => this.uploadImage()}

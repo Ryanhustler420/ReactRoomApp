@@ -218,10 +218,10 @@
   .img-upload-container .img-preview {
     background: center center no-repeat;
     background-size: contain;
-    height: 116px;
-    width: 116px; }
-  .img-upload-container .img-upload {
-    margin-right: 20px;
+    height: 200px;
+    width: 200px; }
+  .img-upload-container .btn-upload {
+    margin-left: 20px;
     margin-bottom: 0; }
   .img-upload-container .upload-text {
     font-size: 17px;
