@@ -210,6 +210,22 @@
   margin-left: 10px;
   font-size: 8px; }
 
+.img-upload-container {
+  margin-bottom: 20px;
+  position: relative; }
+  .img-upload-container .img-preview-container {
+    background-color: #f7f7f7; }
+  .img-upload-container .img-upload {
+    margin-right: 20px;
+    margin-bottom: 0; }
+  .img-upload-container .upload-text {
+    font-size: 17px;
+    margin: 0 10px 0 0; }
+  .img-upload-container input {
+    display: none; }
+  .img-upload-container .alert {
+    margin-top: 10px; }
+
 .booking {
   padding: 20px;
   border: 1px solid #dedada; }
